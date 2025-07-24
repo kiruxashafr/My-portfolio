@@ -111,21 +111,14 @@ ul li {
     justify-content: center;
 }
 
-.logo-frame {
-    border: 2px solid white; /* Shared frame border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 0.5em; /* Space inside the frame */
-    display: flex; /* Align logos side by side */
-    gap: 0.5em; /* Space between logos */
+.contact-box a {
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 0.5em;
 }
 
-.logo-frame a {
-    border: none; /* Remove individual borders from links */
-    padding: 0; /* Remove individual padding from links */
-}
-
-.logo-frame img {
+.contact-box img {
     width: 2em;
     height: 2em;
-    filter: brightness(0) invert(1); /* Keep logos white */
+    filter: brightness(0) invert(1); /* Converts black/blue to white */
 }
