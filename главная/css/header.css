@@ -25,7 +25,7 @@ body {
 }
 
 .hamburger input {
-    display: none;
+    display: none; /* Ensures the checkbox is hidden, controlled by JS */
 }
 
 .hamburger svg {
@@ -57,7 +57,7 @@ body {
 }
 
 .modal {
-    display: none;
+    display: none; /* Initial hidden state, toggled by JS */
     position: fixed;
     top: 0;
     left: 0;
@@ -72,12 +72,13 @@ body {
 
 .modal-content {
     background-color: rgba(27, 28, 29, 1);
-    padding: 2em;
+    padding: 10px;
     border-radius: 10px;
     width: 80%;
     max-width: 300px;
     position: relative;
     text-align: center;
+    border: 1px solid rgb(250 250 250 / 20%);
 }
 
 .close-btn {
@@ -87,38 +88,40 @@ body {
     background: none;
     border: 2px solid white;
     color: white;
-    font-size: 1.5em;
+    font-size: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 33px;
     padding: 0.2em 0.5em;
 }
 
 ul {
     list-style: none;
     padding: 0;
+    text-align: left;
 }
 
 ul li {
     color: white;
     margin: 1em 0;
     cursor: pointer;
+    text-align: left;
 }
 
 .contact-box {
     margin-top: 2em;
     display: flex;
-    gap: 1em;
     justify-content: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    width: 105px;
 }
 
 .contact-box a {
-    border: 2px solid white;
-    border-radius: 5px;
+filter: brightness(0) invert(1); /* Converts black/blue to white */
     padding: 0.5em;
 }
 
 .contact-box img {
     width: 2em;
     height: 2em;
-    filter: brightness(0) invert(1); /* Converts black/blue to white */
 }
