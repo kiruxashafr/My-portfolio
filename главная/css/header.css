@@ -1,8 +1,51 @@
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Unbounded';
+    src: url('../fonts/unbounded/TTF/Unbounded-Blond.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #000;
-    font-family: Arial, sans-serif;
+    background-color: rgb(13,13,13);
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 400;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -79,6 +122,8 @@ body {
     position: relative;
     text-align: center;
     border: 1px solid rgb(250 250 250 / 20%);
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 400;
 }
 
 .close-btn {
@@ -92,6 +137,8 @@ body {
     cursor: pointer;
     border-radius: 33px;
     padding: 0.2em 0.5em;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 300;
 }
 
 ul {
@@ -105,20 +152,22 @@ ul li {
     margin: 1em 0;
     cursor: pointer;
     text-align: left;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 400;
 }
 
 .contact-box {
     margin-top: 2em;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     border: 2px solid white;
     border-radius: 5px;
     width: 105px;
 }
 
 .contact-box a {
-filter: brightness(0) invert(1); /* Converts black/blue to white */
-    padding: 0.5em;
+    filter: brightness(0) invert(1); /* Converts black/blue to white */
+    padding: 6px;
 }
 
 .contact-box img {
