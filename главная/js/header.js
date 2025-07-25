@@ -45,3 +45,37 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+let lastScrollTop = 0;
+const header = document.querySelector('.header');
+
+window.addEventListener('scroll', () => {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (currentScroll > lastScrollTop) {
+        // Scrolling down
+        header.classList.add('hidden');
+    } else {
+        // Scrolling up
+        header.classList.remove('hidden');
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scroll
+});
+
+// Make contact button toggle the modal
+const contactBtn = document.querySelector('.contact-btn');
+contactBtn.addEventListener('click', () => {
+    hamburgerInput.checked = !hamburgerInput.checked; // Toggle checkbox state
+    if (hamburgerInput.checked) {
+        modal.style.display = 'flex';
+        menuItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.classList.add('draw');
+            }, index * 100);
+        });
+    } else {
+        modal.style.display = 'none';
+        menuItems.forEach(item => {
+            item.classList.remove('draw');
+        });
+    }
+});
