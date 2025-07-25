@@ -2,23 +2,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const modal = document.getElementById('modal');
     const hamburgerInput = document.querySelector('.hamburger input');
     const closeBtn = document.querySelector('.close-btn');
+    const menuItems = document.querySelectorAll('.modal-content ul li');
 
-    // Toggle modal when hamburger is clicked
+    // Toggle modal and animate lines when hamburger is clicked
     hamburgerInput.addEventListener('change', () => {
-        modal.style.display = hamburgerInput.checked ? 'flex' : 'none';
+        if (hamburgerInput.checked) {
+            modal.style.display = 'flex';
+            // Add draw class to each li with a staggered delay
+            menuItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('draw');
+                }, index * 100); // 100ms delay per item for staggered effect
+            });
+        } else {
+            modal.style.display = 'none';
+            // Remove draw class to reset animation
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
+        }
     });
 
-    // Close modal and reset hamburger when close button is clicked
+    // Close modal and reset hamburger and lines when close button is clicked
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         hamburgerInput.checked = false;
+        // Remove draw class to reset animation
+        menuItems.forEach(item => {
+            item.classList.remove('draw');
+        });
     });
 
-    // Close modal and reset hamburger if clicking outside the modal content
+    // Close modal and reset hamburger and lines if clicking outside the modal content
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.style.display = 'none';
             hamburgerInput.checked = false;
+            // Remove draw class to reset animation
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
         }
     });
 });

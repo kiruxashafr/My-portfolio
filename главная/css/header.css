@@ -131,7 +131,7 @@ body {
     top: 1em;
     right: 1em;
     background: none;
-    border: 2px solid white;
+    border: 1.5px solid rgb(250 250 250 / 20%);
     color: white;
     font-size: 15px;
     cursor: pointer;
@@ -145,15 +145,33 @@ ul {
     list-style: none;
     padding: 0;
     text-align: left;
+    width: 65px;
 }
 
 ul li {
     color: white;
-    margin: 1em 0;
+    margin: 15px;
     cursor: pointer;
     text-align: left;
     font-family: 'Unbounded', Arial, sans-serif;
     font-weight: 400;
+    position: relative; /* Needed for positioning the ::after pseudo-element */
+}
+
+ul li::after {
+    content: '';
+    display: block;
+    width: 135px;
+    height: 1px;
+    background-color: rgb(250 250 250 / 20%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-in-out;
+    margin-top: 15px;
+}
+
+ul li.draw::after {
+    transform: scaleX(1);
 }
 
 .contact-box {
