@@ -1,0 +1,53 @@
+/* From Uiverse.io by arthur_6104 */
+.works-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh; /* Ensure full viewport height, grows if needed */
+  scroll-snap-align: start; /* Maintain scroll-snap behavior */
+}
+
+.works-heading {
+  color: white;
+  font-family: 'Unbounded', Arial, sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 5vw, 36px);
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.phone-mockup {
+  display: block;
+  margin: 20px auto 0; /* Center and space below heading */
+  opacity: 0; /* Initial state for animation */
+  transform: translateY(30px); /* Initial state for animation */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  z-index: 1; /* Ensure it’s not overlapped */
+}
+
+.phone-mockup.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.phone-mockup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.phone-mockup:hover img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+@media (max-width: 768px) {
+  .works-section {
+    min-height: 100vh; /* Ensure full height on smaller screens */
+    padding: 2%; /* Adjust padding for smaller screens */
+  }
+}

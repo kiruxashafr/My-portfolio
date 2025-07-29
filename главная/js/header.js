@@ -3,20 +3,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburgerInput = document.querySelector('.hamburger input');
     const closeBtn = document.querySelector('.close-btn');
     const menuItems = document.querySelectorAll('.modal-content ul li');
+    const contactBtn = document.querySelector('.contact-btn');
+    const aboutSection = document.querySelector('.about-section');
+    const worksSection = document.querySelector('.works-section');
+
+    // Select animatable elements for about-section and works-section
+    const animatableElements = document.querySelectorAll('.about-section .about-image, .about-section .cardd, .about-section .about-text p, .works-section .phone-mockup');
 
     // Toggle modal and animate lines when hamburger is clicked
     hamburgerInput.addEventListener('change', () => {
         if (hamburgerInput.checked) {
             modal.style.display = 'flex';
-            // Add draw class to each li with a staggered delay
             menuItems.forEach((item, index) => {
                 setTimeout(() => {
                     item.classList.add('draw');
-                }, index * 100); // 100ms delay per item for staggered effect
+                }, index * 100);
             });
         } else {
             modal.style.display = 'none';
-            // Remove draw class to reset animation
             menuItems.forEach(item => {
                 item.classList.remove('draw');
             });
@@ -27,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
         hamburgerInput.checked = false;
-        // Remove draw class to reset animation
         menuItems.forEach(item => {
             item.classList.remove('draw');
         });
@@ -38,13 +41,49 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modal) {
             modal.style.display = 'none';
             hamburgerInput.checked = false;
-            // Remove draw class to reset animation
             menuItems.forEach(item => {
                 item.classList.remove('draw');
             });
         }
     });
+
+    // Make contact button toggle the modal
+    contactBtn.addEventListener('click', () => {
+        hamburgerInput.checked = !hamburgerInput.checked;
+        if (hamburgerInput.checked) {
+            modal.style.display = 'flex';
+            menuItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('draw');
+                }, index * 100);
+            });
+        } else {
+            modal.style.display = 'none';
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
+        }
+    });
+
+    // IntersectionObserver to trigger animations for sections
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatableElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+    }, {
+        threshold: 0.05 // Trigger when 5% of the section is visible
+    });
+
+    observer.observe(aboutSection);
+    if (worksSection) observer.observe(worksSection);
 });
+
 let lastScrollTop = 0;
 const header = document.querySelector('.header');
 
@@ -58,24 +97,5 @@ window.addEventListener('scroll', () => {
         // Scrolling up
         header.classList.remove('hidden');
     }
-    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scroll
-});
-
-// Make contact button toggle the modal
-const contactBtn = document.querySelector('.contact-btn');
-contactBtn.addEventListener('click', () => {
-    hamburgerInput.checked = !hamburgerInput.checked; // Toggle checkbox state
-    if (hamburgerInput.checked) {
-        modal.style.display = 'flex';
-        menuItems.forEach((item, index) => {
-            setTimeout(() => {
-                item.classList.add('draw');
-            }, index * 100);
-        });
-    } else {
-        modal.style.display = 'none';
-        menuItems.forEach(item => {
-            item.classList.remove('draw');
-        });
-    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
