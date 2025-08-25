@@ -46,8 +46,6 @@ body {
     background-color: rgb(13,13,13);
     font-family: 'Unbounded', Arial, sans-serif;
     font-weight: 400;
-    overflow-y: scroll;
-    scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
 }
 
@@ -201,6 +199,7 @@ ul li.draw::after {
     border-radius: 5px;
     width: 105px;
 }
+
 
 .contact-box a {
     filter: brightness(0) invert(1);

@@ -10,6 +10,122 @@
   scroll-snap-align: start; /* Maintain scroll-snap behavior */
 }
 
+.contactwin{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100vh; /* Ensure full viewport height, grows if needed */
+}
+.contactwin {
+    background-color: #0D0D0D;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto;
+    display: block;
+}
+.cont{
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(27, 28, 29, 1);
+    border-radius: 10px;
+    border: 1px solid rgb(250 250 250 / 20%);
+}
+
+.profile-name {
+    color: white;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 36px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+.contact-boxx {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid white;
+    border-radius: 5px;
+
+}
+.contact-boxx a {
+    filter: brightness(0) invert(1);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual icon size control */
+.contact-link-vk img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-telegram img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-whatsapp img {
+  width: 3.6em;
+  height: 3.6em;
+  transition: transform 0.2s;
+}
+.contact-link-mail img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-phone img {
+  width: 3em;
+  height: 3em;
+  transition: transform 0.2s;
+}
+
+.contact-link-vk:hover img,
+.contact-link-telegram:hover img,
+.contact-link-whatsapp:hover img,
+.contact-link-mail:hover img,
+.contact-link-phone:hover img {
+  transform: scale(1.12);
+}
+
+@media (max-width: 768px) {
+  .contact-boxx{
+    width: auto;
+  }
+  .contact-link-vk img {
+    width: 36px;
+    height: 36px;
+  }
+  .contact-link-telegram img {
+    width: 34px;
+    height: 34px;
+  }
+  .contact-link-whatsapp img {
+    width: 32px;
+    height: 32px;
+  }
+  .contact-link-mail img {
+    width: 35px;
+    height: 35px;
+  }
+  .contact-link-phone img {
+    width: 24px;
+    height: 24px;
+  }
+}
 .works-heading {
   color: white;
   font-family: 'Unbounded', Arial, sans-serif;
@@ -20,7 +136,8 @@
 }
 
 .phone-mockup {
-  display: block;
+  display: flex;
+  justify-content: center;
   margin: 20px auto 0; /* Center and space below heading */
   opacity: 0; /* Initial state for animation */
   transform: translateY(30px); /* Initial state for animation */
@@ -34,10 +151,11 @@
 }
 
 .phone-mockup img {
-  width: 100%;
+  width: 90%;
   height: 100%;
   object-fit: cover;
   border-radius: 15px;
+  max-width: 800px;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -50,4 +168,126 @@
     min-height: 100vh; /* Ensure full height on smaller screens */
     padding: 2%; /* Adjust padding for smaller screens */
   }
+}
+
+/* From Uiverse.io by Nawsome */ 
+.loaderrr {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 160px;
+  height: 100px;
+  margin-left: -80px;
+  margin-top: -50px;
+  border-radius: 5px;
+  background: #1e3f57;
+  animation: dot1_ 3s cubic-bezier(0.55,0.3,0.24,0.99) infinite;
+}
+
+.loaderrr:nth-child(2) {
+  z-index: 11;
+  width: 150px;
+  height: 90px;
+  margin-top: -45px;
+  margin-left: -75px;
+  border-radius: 3px;
+  background: #3c517d;
+  animation-name: dot2_;
+}
+
+.loaderrr:nth-child(3) {
+  z-index: 12;
+  width: 40px;
+  height: 20px;
+  margin-top: 50px;
+  margin-left: -20px;
+  border-radius: 0 0 5px 5px;
+  background: #6bb2cd;
+  animation-name: dot3_;
+}
+
+@keyframes dot1_ {
+  3%,97% {
+    width: 160px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -80px;
+  }
+
+  30%,36% {
+    width: 80px;
+    height: 120px;
+    margin-top: -60px;
+    margin-left: -40px;
+  }
+
+  63%,69% {
+    width: 40px;
+    height: 80px;
+    margin-top: -40px;
+    margin-left: -20px;
+  }
+}
+
+@keyframes dot2_ {
+  3%,97% {
+    height: 90px;
+    width: 150px;
+    margin-left: -75px;
+    margin-top: -45px;
+  }
+
+  30%,36% {
+    width: 70px;
+    height: 96px;
+    margin-left: -35px;
+    margin-top: -48px;
+  }
+
+  63%,69% {
+    width: 32px;
+    height: 60px;
+    margin-left: -16px;
+    margin-top: -30px;
+  }
+}
+
+@keyframes dot3_ {
+  3%,97% {
+    height: 20px;
+    width: 40px;
+    margin-left: -20px;
+    margin-top: 50px;
+  }
+
+  30%,36% {
+    width: 8px;
+    height: 8px;
+    margin-left: -5px;
+    margin-top: 49px;
+    border-radius: 8px;
+  }
+
+  63%,69% {
+    width: 16px;
+    height: 4px;
+    margin-left: -8px;
+    margin-top: -37px;
+    border-radius: 10px;
+  }
+}
+
+/* Loader container styles */
+.containerrr {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.containerrr.hidden {
+  display: none;
 }

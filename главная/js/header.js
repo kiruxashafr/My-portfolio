@@ -84,6 +84,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (worksSection) observer.observe(worksSection);
 });
 
+// Hide loader when page is fully loaded
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.containerrr');
+    if (loader) {
+        loader.classList.add('hidden');
+    }
+});
+
 let lastScrollTop = 0;
 const header = document.querySelector('.header');
 
@@ -99,3 +107,4 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
+

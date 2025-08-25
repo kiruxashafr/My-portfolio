@@ -1,0 +1,277 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal');
+    const hamburgerInput = document.querySelector('.hamburger input');
+    const closeBtn = document.querySelector('.close-btn');
+    const menuItems = document.querySelectorAll('.modal-content ul li');
+    const contactBtn = document.querySelector('.contact-btn');
+    const clientSection = document.querySelector('.client-section');
+    const clientSectionTwo = document.querySelector('.client-section-two');
+    const clientSectionThree = document.querySelector('.client-section-three');
+
+    // Select animatable elements for client sections
+    const animatableElements = document.querySelectorAll(
+        '.client-section .photo-container img, .client-section-two .photo-container img, .client-section-three .photo-container img'
+    );
+
+    // Toggle modal and animate lines when hamburger is clicked
+    if (hamburgerInput && modal) {
+        hamburgerInput.addEventListener('change', () => {
+            if (hamburgerInput.checked) {
+                modal.style.display = 'flex';
+                menuItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('draw');
+                    }, index * 100);
+                });
+            } else {
+                modal.style.display = 'none';
+                menuItems.forEach(item => {
+                    item.classList.remove('draw');
+                });
+            }
+        });
+    }
+
+    // Close modal and reset hamburger and lines when close button is clicked
+    if (closeBtn && modal) {
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            if (hamburgerInput) hamburgerInput.checked = false;
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
+        });
+    }
+
+    // Close modal and reset hamburger and lines if clicking outside the modal content
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                if (hamburgerInput) hamburgerInput.checked = false;
+                menuItems.forEach(item => {
+                    item.classList.remove('draw');
+                });
+            }
+        });
+    }
+
+    // Make contact button toggle the modal
+    if (contactBtn && modal) {
+        contactBtn.addEventListener('click', () => {
+            hamburgerInput.checked = !hamburgerInput.checked;
+            if (hamburgerInput.checked) {
+                modal.style.display = 'flex';
+                menuItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add('draw');
+                    }, index * 100);
+                });
+            } else {
+                modal.style.display = 'none';
+                menuItems.forEach(item => {
+                    item.classList.remove('draw');
+                });
+            }
+        });
+    }
+
+    // IntersectionObserver to trigger animations for sections
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatableElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+    }, {
+        threshold: 0.05 // Trigger when 5% of the section is visible
+    });
+
+    // Observe client sections if they exist
+    if (clientSection) observer.observe(clientSection);
+    if (clientSectionTwo) observer.observe(clientSectionTwo);
+    if (clientSectionThree) observer.observe(clientSectionThree);
+
+
+    // Hide loader when page is fully loaded
+    window.addEventListener('load', () => {
+        const loader = document.querySelector('.containerrr');
+        if (loader) {
+            loader.classList.add('hidden');
+        }
+    });
+
+    // Header scroll behavior
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            if (currentScroll > lastScrollTop) {
+                // Scrolling down
+                header.classList.add('hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('hidden');
+            }
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        });
+    }
+
+    // Client section functionality
+    const clientContainer = document.querySelector('.client-container');
+    if (clientContainer) {
+        const buttons = document.querySelectorAll('.client-container .buttons-container button');
+        const imageElement = document.getElementById('feature-image');
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+        if (!isMobile) {
+            // Desktop: add hover event
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                    }
+                });
+            });
+        } else {
+            // Mobile: add click event and start cycling
+            let currentIndex = 0;
+            let intervalId = null;
+
+            const cycleImages = () => {
+                const currentButton = buttons[currentIndex];
+                if (imageElement && currentButton) {
+                    imageElement.src = currentButton.getAttribute('data-image');
+                    imageElement.alt = currentButton.textContent;
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    currentButton.classList.add('active');
+                    currentIndex = (currentIndex + 1) % buttons.length;
+                }
+            };
+
+            if (imageElement) {
+                intervalId = setInterval(cycleImages, 3000);
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    }
+                });
+            });
+        }
+    }
+
+    // Second client section functionality
+    const clientContainerTwo = document.querySelector('.client-container-two');
+    if (clientContainerTwo) {
+        const buttons = document.querySelectorAll('.client-container-two .buttons-container button');
+        const imageElement = document.getElementById('feature-image-two');
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+        if (!isMobile) {
+            // Desktop: add hover event
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                    }
+                });
+            });
+        } else {
+            // Mobile: add click event and start cycling
+            let currentIndex = 0;
+            let intervalId = null;
+
+            const cycleImages = () => {
+                const currentButton = buttons[currentIndex];
+                if (imageElement && currentButton) {
+                    imageElement.src = currentButton.getAttribute('data-image');
+                    imageElement.alt = currentButton.textContent;
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    currentButton.classList.add('active');
+                    currentIndex = (currentIndex + 1) % buttons.length;
+                }
+            };
+
+            if (imageElement) {
+                intervalId = setInterval(cycleImages, 3000);
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    }
+                });
+            });
+        }
+    }
+
+    // Third client section functionality
+    const clientContainerThree = document.querySelector('.client-container-three');
+    if (clientContainerThree) {
+        const buttons = document.querySelectorAll('.client-container-three .buttons-container button');
+        const imageElement = document.getElementById('feature-image-three');
+        const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
+        if (!isMobile) {
+            // Desktop: add hover event
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', () => {
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                    }
+                });
+            });
+        } else {
+            // Mobile: add click event and start cycling
+            let currentIndex = 0;
+            let intervalId = null;
+
+            const cycleImages = () => {
+                const currentButton = buttons[currentIndex];
+                if (imageElement && currentButton) {
+                    imageElement.src = currentButton.getAttribute('data-image');
+                    imageElement.alt = currentButton.textContent;
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    currentButton.classList.add('active');
+                    currentIndex = (currentIndex + 1) % buttons.length;
+                }
+            };
+
+            if (imageElement) {
+                intervalId = setInterval(cycleImages, 3000);
+            }
+
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    clearInterval(intervalId);
+                    if (imageElement) {
+                        imageElement.src = button.getAttribute('data-image');
+                        imageElement.alt = button.textContent;
+                        buttons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    }
+                });
+            });
+        }
+    }
+});
