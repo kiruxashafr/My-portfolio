@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Add loading class to body to hide content initially
+    document.body.classList.add('loading');
+
     const modal = document.getElementById('modal');
     const hamburgerInput = document.querySelector('.hamburger input');
-    const closeBtn = document.querySelector('.close-btn');
+    const closeBtn = document.querySelector('.close-btn');    
     const menuItems = document.querySelectorAll('.modal-content ul li');
     const contactBtn = document.querySelector('.contact-btn');
     const clientSection = document.querySelector('.client-section');
@@ -76,32 +79,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // IntersectionObserver to trigger animations for sections
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animatableElements.forEach((element, index) => {
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                    }, index * 200);
-                });
-            }
-        });
-    }, {
-        threshold: 0.05 // Trigger when 5% of the section is visible
+// IntersectionObserver to trigger animations for sections
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animatableElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('visible');
+                }, index * 200);
+            });
+        }
     });
+}, {
+    threshold: 0.05 // Trigger when 5% of the section is visible
+});
 
-    // Observe client sections if they exist
-    if (clientSection) observer.observe(clientSection);
-    if (clientSectionTwo) observer.observe(clientSectionTwo);
-    if (clientSectionThree) observer.observe(clientSectionThree);
+// Observe client sections if they exist and are valid elements
+console.log('clientSection:', clientSection);
+console.log('clientSectionTwo:', clientSectionTwo);
+console.log('clientSectionThree:', clientSectionThree);
 
+if (clientSection instanceof Element) observer.observe(clientSection);
+if (clientSectionTwo instanceof Element) observer.observe(clientSectionTwo);
+if (clientSectionThree instanceof Element) observer.observe(clientSectionThree);
 
-    // Hide loader when page is fully loaded
+    // Hide loader and show content when page is fully loaded
     window.addEventListener('load', () => {
         const loader = document.querySelector('.containerrr');
         if (loader) {
             loader.classList.add('hidden');
+            document.body.classList.remove('loading');
         }
     });
 

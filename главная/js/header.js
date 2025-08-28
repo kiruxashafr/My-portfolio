@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Add loading class to body to hide content initially
+    document.body.classList.add('loading');
+
     const modal = document.getElementById('modal');
     const hamburgerInput = document.querySelector('.hamburger input');
     const closeBtn = document.querySelector('.close-btn');
@@ -47,23 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Make contact button toggle the modal
-    contactBtn.addEventListener('click', () => {
-        hamburgerInput.checked = !hamburgerInput.checked;
-        if (hamburgerInput.checked) {
-            modal.style.display = 'flex';
-            menuItems.forEach((item, index) => {
-                setTimeout(() => {
-                    item.classList.add('draw');
-                }, index * 100);
-            });
-        } else {
-            modal.style.display = 'none';
-            menuItems.forEach(item => {
-                item.classList.remove('draw');
-            });
-        }
-    });
 
     // IntersectionObserver to trigger animations for sections
     const observer = new IntersectionObserver((entries) => {
@@ -84,11 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (worksSection) observer.observe(worksSection);
 });
 
-// Hide loader when page is fully loaded
+// Hide loader and show content when page is fully loaded
 window.addEventListener('load', () => {
     const loader = document.querySelector('.containerrr');
     if (loader) {
         loader.classList.add('hidden');
+        document.body.classList.remove('loading');
     }
 });
 
@@ -107,4 +94,3 @@ window.addEventListener('scroll', () => {
     }
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
 });
-

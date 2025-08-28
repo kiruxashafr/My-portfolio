@@ -45,22 +45,22 @@ app.use('/fonts', express.static(path.join(__dirname, 'главная', 'fonts')
 }));
 
 // Static files from 'доставка еды/css', 'доставка еды/js', 'доставка еды/photo', 'доставка еды/fonts'
-app.use('/css', express.static(path.join(__dirname, 'доставка еды', 'css'), {
+app.use('/delivery/css', express.static(path.join(__dirname, 'доставка еды', 'css'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/js', express.static(path.join(__dirname, 'доставка еды', 'js'), {
+app.use('/delivery/js', express.static(path.join(__dirname, 'доставка еды', 'js'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/photo', express.static(path.join(__dirname, 'доставка еды', 'photo'), {
+app.use('/delivery/photo', express.static(path.join(__dirname, 'доставка еды', 'photo'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/fonts', express.static(path.join(__dirname, 'доставка еды', 'fonts'), {
+app.use('/delivery/fonts', express.static(path.join(__dirname, 'доставка еды', 'fonts'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
