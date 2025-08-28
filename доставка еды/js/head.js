@@ -10,17 +10,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientSection = document.querySelector('.client-section');
     const clientSectionTwo = document.querySelector('.client-section-two');
     const clientSectionThree = document.querySelector('.client-section-three');
+    const contactWin = document.querySelector('.contactwin');
+    const contactCloseBtn = document.createElement('button');
+    const contactMenuItem = Array.from(menuItems).find(item => item.textContent === 'Контакты');
 
-    // Select animatable elements for client sections
-    const animatableElements = document.querySelectorAll(
-        '.client-section .photo-container img, .client-section-two .photo-container img, .client-section-three .photo-container img'
-    );
+    // Configure close button for contact window
+    contactCloseBtn.className = 'close-contact-btn';
+    contactCloseBtn.textContent = '×';
+    contactWin.querySelector('.conter').appendChild(contactCloseBtn);
+
+    // Initially hide contact window
+    contactWin.style.display = 'none';
 
     // Toggle modal and animate lines when hamburger is clicked
     if (hamburgerInput && modal) {
         hamburgerInput.addEventListener('change', () => {
             if (hamburgerInput.checked) {
                 modal.style.display = 'flex';
+                contactWin.style.display = 'none'; // Ensure contact window is hidden when modal opens
                 menuItems.forEach((item, index) => {
                     setTimeout(() => {
                         item.classList.add('draw');
@@ -59,49 +66,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Make contact button toggle the modal
-    if (contactBtn && modal) {
+    // Show contact window when contact button is clicked
+    if (contactBtn && contactWin) {
         contactBtn.addEventListener('click', () => {
-            hamburgerInput.checked = !hamburgerInput.checked;
-            if (hamburgerInput.checked) {
-                modal.style.display = 'flex';
-                menuItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add('draw');
-                    }, index * 100);
-                });
-            } else {
-                modal.style.display = 'none';
-                menuItems.forEach(item => {
-                    item.classList.remove('draw');
-                });
+            contactWin.style.display = 'flex';
+            modal.style.display = 'none'; // Close hamburger modal if open
+            if (hamburgerInput) hamburgerInput.checked = false;
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
+        });
+    }
+
+    // Show contact window when "Контакты" menu item is clicked
+    if (contactMenuItem && contactWin) {
+        contactMenuItem.addEventListener('click', () => {
+            contactWin.style.display = 'flex';
+            modal.style.display = 'none'; // Close hamburger modal
+            if (hamburgerInput) hamburgerInput.checked = false;
+            menuItems.forEach(item => {
+                item.classList.remove('draw');
+            });
+        });
+    }
+
+    // Close contact window when close button is clicked
+    if (contactCloseBtn && contactWin) {
+        contactCloseBtn.addEventListener('click', () => {
+            contactWin.style.display = 'none';
+        });
+    }
+
+    // Close contact window when clicking outside the content
+    if (contactWin) {
+        contactWin.addEventListener('click', (e) => {
+            if (e.target === contactWin) {
+                contactWin.style.display = 'none';
             }
         });
     }
 
-// IntersectionObserver to trigger animations for sections
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            animatableElements.forEach((element, index) => {
-                setTimeout(() => {
-                    element.classList.add('visible');
-                }, index * 200);
-            });
-        }
+    // Select animatable elements for client sections
+    const animatableElements = document.querySelectorAll(
+        '.client-section .photo-container img, .client-section-two .photo-container img, .client-section-three .photo-container img'
+    );
+
+    // IntersectionObserver to trigger animations for sections
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatableElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 200);
+                });
+            }
+        });
+    }, {
+        threshold: 0.05 // Trigger when 5% of the section is visible
     });
-}, {
-    threshold: 0.05 // Trigger when 5% of the section is visible
-});
 
-// Observe client sections if they exist and are valid elements
-console.log('clientSection:', clientSection);
-console.log('clientSectionTwo:', clientSectionTwo);
-console.log('clientSectionThree:', clientSectionThree);
+    // Observe client sections if they exist and are valid elements
+    console.log('clientSection:', clientSection);
+    console.log('clientSectionTwo:', clientSectionTwo);
+    console.log('clientSectionThree:', clientSectionThree);
 
-if (clientSection instanceof Element) observer.observe(clientSection);
-if (clientSectionTwo instanceof Element) observer.observe(clientSectionTwo);
-if (clientSectionThree instanceof Element) observer.observe(clientSectionThree);
+    if (clientSection instanceof Element) observer.observe(clientSection);
+    if (clientSectionTwo instanceof Element) observer.observe(clientSectionTwo);
+    if (clientSectionThree instanceof Element) observer.observe(clientSectionThree);
 
     // Hide loader and show content when page is fully loaded
     window.addEventListener('load', () => {

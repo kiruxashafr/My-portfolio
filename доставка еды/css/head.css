@@ -200,7 +200,6 @@ ul li.draw::after {
     width: 105px;
 }
 
-
 .contact-box a {
     filter: brightness(0) invert(1);
     padding: 6px;
@@ -274,8 +273,6 @@ ul li.draw::after {
     display: flex;
     align-items: center;
 }
-
-
 
 /* From Uiverse.io by Nawsome */ 
 .loaderrr {
@@ -403,3 +400,154 @@ ul li.draw::after {
   display: none;
 }
 
+.works-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4%;
+  box-sizing: border-box;
+  width: 100%;
+  scroll-snap-align: start; /* Maintain scroll-snap behavior */
+}
+
+.contactwin {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed position to overlay on the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Blur effect for the background */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it appears above other content */
+}
+
+.conter {
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(27, 28, 29, 1);
+    border-radius: 10px;
+    border: 1px solid rgb(250 250 250 / 20%);
+    max-width: 400px; /* Limit maximum width */
+    position: relative;
+}
+
+.close-contact-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: 1.5px solid rgb(250 250 250 / 20%);
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 33px;
+    padding: 0.2em 0.5em;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 300;
+    transition: background-color 0.3s ease;
+}
+
+.close-contact-btn:hover {
+    background-color: rgb(250 250 250 / 10%);
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto;
+    display: block;
+}
+
+.profile-name {
+    color: white;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 700;
+    font-size: clamp(24px, 5vw, 36px);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact-boxx {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+.contact-boxx a {
+    filter: brightness(0) invert(1);
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual icon size control */
+.contact-link-vk img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-telegram img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-whatsapp img {
+  width: 3.6em;
+  height: 3.6em;
+  transition: transform 0.2s;
+}
+.contact-link-mail img {
+  width: 4em;
+  height: 4em;
+  transition: transform 0.2s;
+}
+.contact-link-phone img {
+  width: 3em;
+  height: 3em;
+  transition: transform 0.2s;
+}
+
+.contact-link-vk:hover img,
+.contact-link-telegram:hover img,
+.contact-link-whatsapp:hover img,
+.contact-link-mail:hover img,
+.contact-link-phone:hover img {
+  transform: scale(1.12);
+}
+
+@media (max-width: 768px) {
+  .contact-boxx {
+    width: auto;
+  }
+  .contact-link-vk img {
+    width: 36px;
+    height: 36px;
+  }
+  .contact-link-telegram img {
+    width: 34px;
+    height: 34px;
+  }
+  .contact-link-whatsapp img {
+    width: 32px;
+    height: 32px;
+  }
+  .contact-link-mail img {
+    width: 35px;
+    height: 35px;
+  }
+  .contact-link-phone img {
+    width: 24px;
+    height: 24px;
+  }
+}
