@@ -1,3 +1,58 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-ExtraBold.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter/Inter-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -32,21 +87,55 @@ body {
 .title {
     font-size: 3rem;
     color: black;
-    margin-bottom: 15px;
+    font-weight: 700;
+    font-family: inter;
+    white-space: nowrap;
 }
 
 .subtitle {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     color: #555;
     margin-bottom: 30px;
+    font-weight: 400;
+    font-family: inter;
     font-weight: normal;
+    white-space: nowrap;
 }
+
+
+
+.hidden {
+  opacity:0;
+}
+.console-container {
+    font-family: inter;
+    font-weight: 700;
+    font-size: 3rem;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    margin: auto;
+    white-space: nowrap;
+    padding-left: 9%;
+}
+.console-underscore {
+   display:inline-block;
+  position:relative;
+  top:-0.14em;
+  left:10px;
+}
+
 
 .order-btn {
     padding: 15px 40px;
     font-size: 1.2rem;
-    background: #ff6b6b;
-    color: white;
+    background: #54b379;
+    background: #3a0000;
+    color: rgb(255 255 255);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -198,10 +287,12 @@ body {
         max-width: 80px; /* Уменьшаем размер фото на мобильных */
         height: auto;
     }
-    
+    .console-container{
+        font-size: 2rem;
+    }
     .title {
         font-size: 2rem;
-        margin-bottom: 10px;
+
     }
     
     .subtitle {
