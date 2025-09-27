@@ -11,8 +11,7 @@ body {
     color: black;
 }
 
-.container {
-    min-height: 100vh;
+.container-main {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,6 +20,7 @@ body {
     gap: 60px;
     max-width: 1400px;
     margin: 0 auto;
+    margin-top: 85px;
 }
 
 .content {
@@ -76,7 +76,7 @@ body {
 
 .photo-item {
     opacity: 1;
-    transition: all 2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: all 2s ;
 }
 
 /* Начальные позиции - сразу смещены */
@@ -132,7 +132,7 @@ body {
 
 /* Мобильная версия */
 @media (max-width: 768px) {
-    .container {
+    .container-main {
         flex-direction: column;
         justify-content: flex-start;
         padding: 40px 20px;
@@ -150,23 +150,52 @@ body {
         order: 2;
         margin-bottom: 40px;
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        width: 100%;
     }
     
     .photo-column {
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
+        gap: 15px;
+        width: 100%;
     }
     
     .photo-item {
-        flex: 0 0 calc(50% - 20px);
-        transform: translateX(0) !important; /* Убираем смещение на мобильных */
+        flex: 0 0 auto;
+        transform: none !important;
+        position: relative;
+    }
+    
+    /* Хаотичное расположение фото дугой */
+    .photo-item[data-index="0"] { 
+        transform: translateX(-15px) translateY(-10px) rotate(-5deg) !important; 
+    }
+    .photo-item[data-index="1"] { 
+        transform: translateX(20px) translateY(5px) rotate(3deg) !important; 
+    }
+    .photo-item[data-index="2"] { 
+        transform: translateX(-25px) translateY(15px) rotate(-8deg) !important; 
+    }
+    .photo-item[data-index="3"] { 
+        transform: translateX(10px) translateY(-5px) rotate(6deg) !important; 
+    }
+    .photo-item[data-index="4"] { 
+        transform: translateX(-20px) translateY(10px) rotate(-3deg) !important; 
+    }
+    .photo-item[data-index="5"] { 
+        transform: translateX(15px) translateY(-15px) rotate(8deg) !important; 
+    }
+    .photo-item[data-index="6"] { 
+        transform: translateX(-10px) translateY(5px) rotate(-6deg) !important; 
+    }
+    .photo-item[data-index="7"] { 
+        transform: translateX(25px) translateY(-10px) rotate(4deg) !important; 
     }
     
     .photo-item img {
-        max-width: 120px;
+        max-width: 80px; /* Уменьшаем размер фото на мобильных */
         height: auto;
     }
     
@@ -180,18 +209,70 @@ body {
         margin-bottom: 20px;
     }
     
-    /* Мобильная анимация разлетания */
-    .photo-item.scroll-animate[data-index="0"],
-    .photo-item.scroll-animate[data-index="1"],
-    .photo-item.scroll-animate[data-index="2"],
+    /* Мобильная анимация разлетания - каждая фото улетает в свою сторону */
+    .photo-item.scroll-animate[data-index="0"] {
+        transform: translateX(-100vw) translateY(-80vh) rotate(-45deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="1"] {
+        transform: translateX(-80vw) translateY(-100vh) rotate(-30deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="2"] {
+        transform: translateX(-60vw) translateY(-120vh) rotate(-60deg) !important;
+    }
     .photo-item.scroll-animate[data-index="3"] {
-        transform: translateX(-100vw) translateY(-40vh) rotate(-30deg) !important;
+        transform: translateX(-40vw) translateY(-90vh) rotate(-15deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="4"] {
+        transform: translateX(100vw) translateY(-70vh) rotate(50deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="5"] {
+        transform: translateX(70vw) translateY(-110vh) rotate(35deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="6"] {
+        transform: translateX(90vw) translateY(-95vh) rotate(65deg) !important;
+    }
+    .photo-item.scroll-animate[data-index="7"] {
+        transform: translateX(50vw) translateY(-85vh) rotate(25deg) !important;
+    }
+}
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 480px) {
+    .photo-item img {
+        max-width: 70px; /* Еще меньше фото на очень маленьких экранах */
     }
     
-    .photo-item.scroll-animate[data-index="4"],
-    .photo-item.scroll-animate[data-index="5"],
-    .photo-item.scroll-animate[data-index="6"],
-    .photo-item.scroll-animate[data-index="7"] {
-        transform: translateX(100vw) translateY(-40vh) rotate(30deg) !important;
+    .photos-container {
+        gap: 10px;
+    }
+    
+    .photo-column {
+        gap: 10px;
+    }
+    
+    /* Еще более хаотичное расположение */
+    .photo-item[data-index="0"] { 
+        transform: translateX(-10px) translateY(-5px) rotate(-3deg) !important; 
+    }
+    .photo-item[data-index="1"] { 
+        transform: translateX(0px) translateY(8px) rotate(2deg) !important; 
+    }
+    .photo-item[data-index="2"] { 
+        transform: translateX(-10px) translateY(12px) rotate(-5deg) !important; 
+    }
+    .photo-item[data-index="3"] { 
+        transform: translateX(8px) translateY(-3px) rotate(4deg) !important; 
+    }
+    .photo-item[data-index="4"] { 
+        transform: translateX(-15px) translateY(7px) rotate(-2deg) !important; 
+    }
+    .photo-item[data-index="5"] { 
+        transform: translateX(12px) translateY(-10px) rotate(5deg) !important; 
+    }
+    .photo-item[data-index="6"] { 
+        transform: translateX(-8px) translateY(4px) rotate(-4deg) !important; 
+    }
+    .photo-item[data-index="7"] { 
+        transform: translateX(18px) translateY(-7px) rotate(3deg) !important; 
     }
 }

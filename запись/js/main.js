@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для анимации разлетания при скролле
     function handleScrollAnimation() {
         const scrollPosition = window.scrollY;
-        const triggerPoint = 50;
+        const triggerPoint = 0;
         
         if (scrollPosition > triggerPoint) {
             photoItems.forEach(item => {
