@@ -72,7 +72,8 @@ body {
     justify-content: center;
     position: relative;
     padding: 60px 20px;
-    gap: 60px;
+    gap: 0;
+    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     margin-top: 85px;
@@ -81,7 +82,8 @@ body {
 .content {
     text-align: center;
     z-index: 10;
-    flex: 0 0 300px;
+    flex: 0 0 auto;
+    margin: 0 auto;
 }
 
 .title {
@@ -102,8 +104,6 @@ body {
     white-space: nowrap;
 }
 
-
-
 .hidden {
   opacity:0;
 }
@@ -112,7 +112,6 @@ body {
     font-weight: 700;
     font-size: 3rem;
     text-align: center;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,7 +119,7 @@ body {
     color: white;
     margin: auto;
     white-space: nowrap;
-    padding-left: 9%;
+    padding-left: 5%;
 }
 .console-underscore {
    display:inline-block;
@@ -128,7 +127,6 @@ body {
   top:-0.14em;
   left:10px;
 }
-
 
 .order-btn {
     padding: 15px 40px;
@@ -151,8 +149,12 @@ body {
 
 .photos-container {
     display: flex;
-    gap: 150px;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    position: relative;
+    left: 0;
+    right: 0;
     pointer-events: none;
 }
 
@@ -161,6 +163,17 @@ body {
     flex-direction: column;
     gap: 30px;
     pointer-events: auto;
+    flex: 0 0 auto;
+}
+
+.left-column {
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.right-column {
+    align-items: flex-end;
+    margin-right: 20px;
 }
 
 .photo-item {
@@ -241,6 +254,7 @@ body {
         flex-direction: column;
         gap: 15px;
         width: 100%;
+        position: relative;
     }
     
     .photo-column {
@@ -249,6 +263,11 @@ body {
         justify-content: center;
         gap: 15px;
         width: 100%;
+        margin: 0;
+    }
+    
+    .left-column, .right-column {
+        align-items: center;
     }
     
     .photo-item {
@@ -259,32 +278,34 @@ body {
     
     /* Хаотичное расположение фото дугой */
     .photo-item[data-index="0"] { 
-        transform: translateX(-15px) translateY(-10px) rotate(-5deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(-5deg) !important; 
     }
     .photo-item[data-index="1"] { 
-        transform: translateX(20px) translateY(5px) rotate(3deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(3deg) !important; 
     }
     .photo-item[data-index="2"] { 
-        transform: translateX(-25px) translateY(15px) rotate(-8deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(-8deg) !important; 
     }
     .photo-item[data-index="3"] { 
-        transform: translateX(10px) translateY(-5px) rotate(6deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(6deg) !important; 
     }
     .photo-item[data-index="4"] { 
-        transform: translateX(-20px) translateY(10px) rotate(-3deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(-3deg) !important; 
     }
     .photo-item[data-index="5"] { 
-        transform: translateX(15px) translateY(-15px) rotate(8deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(8deg) !important; 
     }
     .photo-item[data-index="6"] { 
-        transform: translateX(-10px) translateY(5px) rotate(-6deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(-6deg) !important; 
     }
     .photo-item[data-index="7"] { 
-        transform: translateX(25px) translateY(-10px) rotate(4deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(4deg) !important; 
     }
-    
+    .order-btn{
+        padding: 10px 25px;
+    }
     .photo-item img {
-        max-width: 80px; /* Уменьшаем размер фото на мобильных */
+        max-width: 80px;
         height: auto;
     }
     .console-container{
@@ -292,7 +313,6 @@ body {
     }
     .title {
         font-size: 2rem;
-
     }
     
     .subtitle {
@@ -301,36 +321,29 @@ body {
     }
     
     /* Мобильная анимация разлетания - каждая фото улетает в свою сторону */
-    .photo-item.scroll-animate[data-index="0"] {
-        transform: translateX(-100vw) translateY(-80vh) rotate(-45deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="1"] {
-        transform: translateX(-80vw) translateY(-100vh) rotate(-30deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="2"] {
-        transform: translateX(-60vw) translateY(-120vh) rotate(-60deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="3"] {
-        transform: translateX(-40vw) translateY(-90vh) rotate(-15deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="4"] {
-        transform: translateX(100vw) translateY(-70vh) rotate(50deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="5"] {
-        transform: translateX(70vw) translateY(-110vh) rotate(35deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="6"] {
-        transform: translateX(90vw) translateY(-95vh) rotate(65deg) !important;
-    }
-    .photo-item.scroll-animate[data-index="7"] {
-        transform: translateX(50vw) translateY(-85vh) rotate(25deg) !important;
-    }
+    .photo-item[data-index="0"] { 
+        transform: translateX(-30px) translateY(-5px) rotate(-5deg) !important;}
+    .photo-item[data-index="1"] { 
+        transform: translateX(-15px) translateY(0px) rotate(3deg) !important;    }
+    .photo-item[data-index="2"] { 
+        transform: translateX(-15px) translateY(0px) rotate(-8deg) !important;    }
+    .photo-item[data-index="3"] { 
+display: none;    }
+    .photo-item[data-index="4"] { 
+        transform: translateX(30px) translateY(-16px) rotate(-3deg) !important;    }
+    .photo-item[data-index="5"] { 
+        transform: translateX(29px) translateY(9px) rotate(8deg) !important;    }
+    .photo-item[data-index="6"] { 
+        transform: translateX(31px) translateY(3px) rotate(-6deg) !important;    }
+    .photo-item[data-index="7"] { 
+        transform: translateX(17px) translateY(-37px) rotate(4deg) !important;    }
+
 }
 
 /* Дополнительные стили для очень маленьких экранов */
 @media (max-width: 480px) {
     .photo-item img {
-        max-width: 70px; /* Еще меньше фото на очень маленьких экранах */
+        max-width: 60px;
     }
     
     .photos-container {
@@ -343,27 +356,19 @@ body {
     
     /* Еще более хаотичное расположение */
     .photo-item[data-index="0"] { 
-        transform: translateX(-10px) translateY(-5px) rotate(-3deg) !important; 
-    }
+        transform: translateX(-30px) translateY(-5px) rotate(-5deg) !important;}
     .photo-item[data-index="1"] { 
-        transform: translateX(0px) translateY(8px) rotate(2deg) !important; 
-    }
+        transform: translateX(-15px) translateY(0px) rotate(3deg) !important;    }
     .photo-item[data-index="2"] { 
-        transform: translateX(-10px) translateY(12px) rotate(-5deg) !important; 
-    }
+        transform: translateX(-15px) translateY(0px) rotate(-8deg) !important;    }
     .photo-item[data-index="3"] { 
-        transform: translateX(8px) translateY(-3px) rotate(4deg) !important; 
-    }
+display: none;    }
     .photo-item[data-index="4"] { 
-        transform: translateX(-15px) translateY(7px) rotate(-2deg) !important; 
-    }
+        transform: translateX(30px) translateY(-16px) rotate(-3deg) !important;    }
     .photo-item[data-index="5"] { 
-        transform: translateX(12px) translateY(-10px) rotate(5deg) !important; 
-    }
+        transform: translateX(29px) translateY(9px) rotate(8deg) !important;    }
     .photo-item[data-index="6"] { 
-        transform: translateX(-8px) translateY(4px) rotate(-4deg) !important; 
-    }
+        transform: translateX(31px) translateY(3px) rotate(-6deg) !important;    }
     .photo-item[data-index="7"] { 
-        transform: translateX(18px) translateY(-7px) rotate(3deg) !important; 
-    }
+        transform: translateX(17px) translateY(-37px) rotate(4deg) !important;    }
 }
