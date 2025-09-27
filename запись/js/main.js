@@ -69,15 +69,5 @@ function consoleText(words, id, colors) {
       letterCount += x;
     }
   }, 120)
-  window.setInterval(function() {
-    if (visible === true) {
-      con.className = 'console-underscore hidden'
-      visible = false;
 
-    } else {
-      con.className = 'console-underscore'
-
-      visible = true;
-    }
-  }, 400)
 }

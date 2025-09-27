@@ -120,25 +120,46 @@ body {
     margin: auto;
     white-space: nowrap;
     padding-left: 5%;
+    margin-bottom: 30px;
 }
 .console-underscore {
-   display:inline-block;
-  position:relative;
-  top:-0.14em;
-  left:10px;
+    display: inline-block;
+    width: 2px;
+    height: 1.2em; /* Высота как у текста */
+    background-color: black;
+    margin-left: 5px;
+    vertical-align: middle;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .order-btn {
     padding: 15px 40px;
     font-size: 1.2rem;
-    background: #54b379;
+    font-family: inter;
     background: #3a0000;
     color: rgb(255 255 255);
     border: none;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+}
+.order-btn2{
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: inter;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid #303030;
 }
 
 .order-btn:hover {
@@ -231,7 +252,6 @@ body {
 .photo-item.scroll-animate[data-index="7"] { 
     transform: translateX(50vw) translateY(-30vh) rotate(15deg); 
 }
-
 /* Мобильная версия */
 @media (max-width: 768px) {
     .container-main {
@@ -259,11 +279,16 @@ body {
     
     .photo-column {
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
         gap: 15px;
         width: 100%;
         margin: 0;
+    }
+    .button-main{
+        display: flex;
+        font-size: 1.2rem;
+        flex-direction: column;
     }
     
     .left-column, .right-column {
@@ -272,36 +297,41 @@ body {
     
     .photo-item {
         flex: 0 0 auto;
-        transform: none !important;
         position: relative;
+
     }
     
-    /* Хаотичное расположение фото дугой */
+    /* Начальные позиции для мобильных */
     .photo-item[data-index="0"] { 
-        transform: translateX(0px) translateY(0px) rotate(-5deg) !important; 
+        transform: translateX(-100px) translateY(-5px) rotate(-5deg);
     }
     .photo-item[data-index="1"] { 
-        transform: translateX(0px) translateY(0px) rotate(3deg) !important; 
+        transform: translateX(-40px) translateY(0px) rotate(3deg);
     }
     .photo-item[data-index="2"] { 
-        transform: translateX(0px) translateY(0px) rotate(-8deg) !important; 
+        transform: translateX(0px) translateY(0px) rotate(-8deg);
     }
     .photo-item[data-index="3"] { 
-        transform: translateX(0px) translateY(0px) rotate(6deg) !important; 
+        display: none;
     }
     .photo-item[data-index="4"] { 
-        transform: translateX(0px) translateY(0px) rotate(-3deg) !important; 
+        transform: translateX(10px) translateY(-16px) rotate(-3deg);
     }
     .photo-item[data-index="5"] { 
-        transform: translateX(0px) translateY(0px) rotate(8deg) !important; 
+        transform: translateX(29px) translateY(9px) rotate(8deg);
     }
     .photo-item[data-index="6"] { 
-        transform: translateX(0px) translateY(0px) rotate(-6deg) !important; 
+        transform: translateX(55px) translateY(3px) rotate(-6deg);
     }
     .photo-item[data-index="7"] { 
-        transform: translateX(0px) translateY(0px) rotate(4deg) !important; 
+        transform: translateX(55px) translateY(-37px) rotate(4deg);
     }
+    
     .order-btn{
+        padding: 10px 25px;
+        margin-bottom: 6px;
+    }
+    .order-btn2{
         padding: 10px 25px;
     }
     .photo-item img {
@@ -321,23 +351,31 @@ body {
     }
     
     /* Мобильная анимация разлетания - каждая фото улетает в свою сторону */
-    .photo-item[data-index="0"] { 
-        transform: translateX(-30px) translateY(-5px) rotate(-5deg) !important;}
-    .photo-item[data-index="1"] { 
-        transform: translateX(-15px) translateY(0px) rotate(3deg) !important;    }
-    .photo-item[data-index="2"] { 
-        transform: translateX(-15px) translateY(0px) rotate(-8deg) !important;    }
-    .photo-item[data-index="3"] { 
-display: none;    }
-    .photo-item[data-index="4"] { 
-        transform: translateX(30px) translateY(-16px) rotate(-3deg) !important;    }
-    .photo-item[data-index="5"] { 
-        transform: translateX(29px) translateY(9px) rotate(8deg) !important;    }
-    .photo-item[data-index="6"] { 
-        transform: translateX(31px) translateY(3px) rotate(-6deg) !important;    }
-    .photo-item[data-index="7"] { 
-        transform: translateX(17px) translateY(-37px) rotate(4deg) !important;    }
-
+    /* Мобильная анимация разлетания */
+    .photo-item.scroll-animate[data-index="0"] { 
+        transform: translateX(-80vw) translateY(-60vh) rotate(-45deg);
+    }
+    .photo-item.scroll-animate[data-index="1"] { 
+        transform: translateX(-20vw) translateY(-50vh) rotate(-35deg);
+    }
+    .photo-item.scroll-animate[data-index="2"] { 
+        transform: translateX(20vw) translateY(-40vh) rotate(-25deg);
+    }
+    .photo-item.scroll-animate[data-index="3"] { 
+        display: none;
+    }
+    .photo-item.scroll-animate[data-index="4"] { 
+        transform: translateX(-70vw) translateY(-60vh) rotate(-45deg);
+    }
+    .photo-item.scroll-animate[data-index="5"] { 
+        transform: translateX(10vw) translateY(-50vh) rotate(35deg);
+    }
+    .photo-item.scroll-animate[data-index="6"] { 
+        transform: translateX(50vw) translateY(-40vh) rotate(25deg);
+    }
+    .photo-item.scroll-animate[data-index="7"] { 
+        transform: translateX(50vw) translateY(-30vh) rotate(15deg);
+    }
 }
 
 /* Дополнительные стили для очень маленьких экранов */
@@ -354,21 +392,29 @@ display: none;    }
         gap: 10px;
     }
     
-    /* Еще более хаотичное расположение */
+    /* Начальные позиции для мобильных */
     .photo-item[data-index="0"] { 
-        transform: translateX(-30px) translateY(-5px) rotate(-5deg) !important;}
+        transform: translateX(-60px) translateY(-5px) rotate(-5deg);
+    }
     .photo-item[data-index="1"] { 
-        transform: translateX(-15px) translateY(0px) rotate(3deg) !important;    }
+        transform: translateX(-15px) translateY(0px) rotate(3deg);
+    }
     .photo-item[data-index="2"] { 
-        transform: translateX(-15px) translateY(0px) rotate(-8deg) !important;    }
+        transform: translateX(-15px) translateY(0px) rotate(-8deg);
+    }
     .photo-item[data-index="3"] { 
-display: none;    }
+        display: none;
+    }
     .photo-item[data-index="4"] { 
-        transform: translateX(30px) translateY(-16px) rotate(-3deg) !important;    }
+        transform: translateX(30px) translateY(-16px) rotate(-3deg);
+    }
     .photo-item[data-index="5"] { 
-        transform: translateX(29px) translateY(9px) rotate(8deg) !important;    }
+        transform: translateX(29px) translateY(9px) rotate(8deg);
+    }
     .photo-item[data-index="6"] { 
-        transform: translateX(31px) translateY(3px) rotate(-6deg) !important;    }
+        transform: translateX(31px) translateY(3px) rotate(-6deg);
+    }
     .photo-item[data-index="7"] { 
-        transform: translateX(17px) translateY(-37px) rotate(4deg) !important;    }
+        transform: translateX(34px) translateY(-37px) rotate(4deg);
+    }
 }

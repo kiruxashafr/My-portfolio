@@ -110,7 +110,7 @@ main {
 }
 
 .modal-content {
-    background-color: #54b379;
+    background-color: rgba(27, 28, 29, 1);
     padding: 10px;
     border-radius: 10px;
     width: 80%;
