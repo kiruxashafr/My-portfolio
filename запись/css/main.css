@@ -7,18 +7,18 @@
 body {
     font-family: Arial, sans-serif;
     min-height: 200vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: white;
+    color: black;
 }
 
 .container {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
-    padding: 20px;
-    flex-wrap: wrap;
-    gap: 40px;
+    padding: 60px 20px;
+    gap: 60px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -26,18 +26,20 @@ body {
 .content {
     text-align: center;
     z-index: 10;
-    flex: 0 0 auto;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    flex: 0 0 300px;
 }
 
 .title {
     font-size: 3rem;
-    color: white;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #555;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-weight: normal;
 }
 
 .order-btn {
@@ -46,7 +48,7 @@ body {
     background: #ff6b6b;
     color: white;
     border: none;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -60,9 +62,8 @@ body {
 
 .photos-container {
     display: flex;
-    gap: 40px;
-    width: 100%;
-    justify-content: space-between;
+    gap: 150px;
+    align-items: center;
     pointer-events: none;
 }
 
@@ -74,19 +75,23 @@ body {
 }
 
 .photo-item {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.8s ease;
+    opacity: 1;
+    transition: all 2s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-.photo-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+/* Начальные позиции - сразу смещены */
+.photo-item[data-index="0"] { transform: translateX(-20px); }
+.photo-item[data-index="1"] { transform: translateX(20px); }
+.photo-item[data-index="2"] { transform: translateX(-20px); }
+.photo-item[data-index="3"] { transform: translateX(20px); }
+.photo-item[data-index="4"] { transform: translateX(-20px); }
+.photo-item[data-index="5"] { transform: translateX(20px); }
+.photo-item[data-index="6"] { transform: translateX(-20px); }
+.photo-item[data-index="7"] { transform: translateX(20px); }
 
 .photo-item img {
     width: 100%;
-    max-width: 100px;
+    max-width: 120px;
     height: auto;
     object-fit: contain;
     border-radius: 15px;
@@ -98,27 +103,51 @@ body {
     transform: scale(1.05);
 }
 
+/* Финальные позиции при разлете */
+.photo-item.scroll-animate[data-index="0"] { 
+    transform: translateX(-80vw) translateY(-60vh) rotate(-45deg); 
+}
+.photo-item.scroll-animate[data-index="1"] { 
+    transform: translateX(-70vw) translateY(-50vh) rotate(-35deg); 
+}
+.photo-item.scroll-animate[data-index="2"] { 
+    transform: translateX(-60vw) translateY(-40vh) rotate(-25deg); 
+}
+.photo-item.scroll-animate[data-index="3"] { 
+    transform: translateX(-50vw) translateY(-30vh) rotate(-15deg); 
+}
+
+.photo-item.scroll-animate[data-index="4"] { 
+    transform: translateX(80vw) translateY(-60vh) rotate(45deg); 
+}
+.photo-item.scroll-animate[data-index="5"] { 
+    transform: translateX(70vw) translateY(-50vh) rotate(35deg); 
+}
+.photo-item.scroll-animate[data-index="6"] { 
+    transform: translateX(60vw) translateY(-40vh) rotate(25deg); 
+}
+.photo-item.scroll-animate[data-index="7"] { 
+    transform: translateX(50vw) translateY(-30vh) rotate(15deg); 
+}
+
 /* Мобильная версия */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         justify-content: flex-start;
-        padding-top: 50px;
-        min-height: 100vh;
-        position: relative;
+        padding: 40px 20px;
+        min-height: auto;
+        gap: 30px;
     }
     
     .content {
-        position: relative;
-        left: auto;
-        top: auto;
-        transform: none;
-        order: 2;
-        margin-top: 40px;
+        order: 1;
+        margin-bottom: 30px;
+        flex: 0 0 auto;
     }
     
     .photos-container {
-        order: 1;
+        order: 2;
         margin-bottom: 40px;
         flex-direction: column;
         gap: 20px;
@@ -133,28 +162,36 @@ body {
     
     .photo-item {
         flex: 0 0 calc(50% - 20px);
+        transform: translateX(0) !important; /* Убираем смещение на мобильных */
     }
     
     .photo-item img {
-        max-width: 150px;
+        max-width: 120px;
         height: auto;
     }
     
     .title {
         font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
         margin-bottom: 20px;
     }
+    
+    /* Мобильная анимация разлетания */
+    .photo-item.scroll-animate[data-index="0"],
+    .photo-item.scroll-animate[data-index="1"],
+    .photo-item.scroll-animate[data-index="2"],
+    .photo-item.scroll-animate[data-index="3"] {
+        transform: translateX(-100vw) translateY(-40vh) rotate(-30deg) !important;
+    }
+    
+    .photo-item.scroll-animate[data-index="4"],
+    .photo-item.scroll-animate[data-index="5"],
+    .photo-item.scroll-animate[data-index="6"],
+    .photo-item.scroll-animate[data-index="7"] {
+        transform: translateX(100vw) translateY(-40vh) rotate(30deg) !important;
+    }
 }
-
-/* Анимации для разлетающихся фото при скролле */
-.photo-item.scroll-animate {
-    transition: transform 2s ease; /* Increased duration for slower animation */
-}
-.photo-item.scroll-animate[data-index="0"] { transform: translateX(-50vw) translateY(-50vh) rotate(-45deg); }
-.photo-item.scroll-animate[data-index="1"] { transform: translateX(-40vw) translateY(-40vh) rotate(-30deg); }
-.photo-item.scroll-animate[data-index="2"] { transform: translateX(-30vw) translateY(-30vh) rotate(-15deg); }
-.photo-item.scroll-animate[data-index="3"] { transform: translateX(-20vw) translateY(-20vh) rotate(-10deg); }
-.photo-item.scroll-animate[data-index="4"] { transform: translateX(50vw) translateY(-50vh) rotate(45deg); }
-.photo-item.scroll-animate[data-index="5"] { transform: translateX(40vw) translateY(-40vh) rotate(30deg); }
-.photo-item.scroll-animate[data-index="6"] { transform: translateX(30vw) translateY(-30vh) rotate(15deg); }
-.photo-item.scroll-animate[data-index="7"] { transform: translateX(20vw) translateY(-20vh) rotate(10deg); }
