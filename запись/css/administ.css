@@ -1,0 +1,94 @@
+.administ-section {
+    padding: 80px 20px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.administ-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.administ-content {
+    flex: 1;
+    text-align: left;
+}
+
+.administ-title {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.administ-description {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 20px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.administ-visual {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.administ-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .administ-section {
+        padding: 60px 15px;
+    }
+    .administ-title{
+        font-size: 32px;
+    }
+    .administ-description{
+        font-size: 16px;
+        width: 90%;
+        margin: auto;
+    }
+    
+    .administ-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .administ-content {
+        text-align: center;
+        order: 1;
+    }
+    
+    .administ-visual {
+        order: 2;
+    }
+    
+    .administ-image {
+        max-width: 80%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .administ-title{
+        font-size: 26px;
+    }
+    .administ-description{
+        font-size: 14px;
+    }
+}

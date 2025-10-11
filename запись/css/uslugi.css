@@ -182,3 +182,7 @@
     }
 }
 @media (max-width: 400px) {}
+
+.phot{
+    width: 50%;
+}
