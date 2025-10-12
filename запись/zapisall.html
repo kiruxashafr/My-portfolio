@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zapisall</title>
-        <link rel="icon" type="image/png" href="photo/header/лого минимализм.png">
+    <link rel="icon" type="image/png" href="photo/header/logo черн.png" media="(prefers-color-scheme: light)">
+    <link rel="icon" type="image/png" href="photo/header/logo бел.png" media="(prefers-color-scheme: dark)">
     <meta property="og:image" content="photo/header/лого минимализм.png">
 
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/uslugi.css">
     <link rel="stylesheet" href="css/administ.css">
+    <link rel="stylesheet" href="css/zakaz.css">
+    <link rel="stylesheet" href="css/photo.css">
+
 </head>
 
 <header class="header">
@@ -189,6 +193,39 @@
         
 </section>
 
+
+<section class="photo-section">
+    <div class="photo-container">
+        <h2 class="photo-title">Telegram бот</h2>
+        
+        <!-- Десктоп версия -->
+        <div class="desktop-photos">
+            <div class="top-row">
+                <img src="photo/administ/тг бот/лг м гр.png" alt="Работа 1" class="desktop-photo-gr">
+                <img src="photo/administ/тг бот/лк гр.png" alt="Работа 2" class="desktop-photo-gr">
+            </div>
+            <div class="bottom-row">
+                <img src="photo/administ/тг бот/увед к.png" alt="Работа 3" class="desktop-photo">
+                <img src="photo/administ/тг бот/админ п.png" alt="Работа 4" class="desktop-photo">
+                <img src="photo/administ/тг бот/увед мк.png" alt="Работа 5" class="desktop-photo">
+            </div>
+        </div>
+        
+        <!-- Мобильная версия -->
+        <div class="mobile-slider">
+            <div class="mobile-slider-container">
+                <img src="photo/administ/тг бот/гл меню.png" alt="Работа 1" class="mobile-photo">
+                <img src="photo/administ/тг бот/лк.png" alt="Работа 2" class="mobile-photo">
+                <img src="photo/administ/тг бот/увед к.png" alt="Работа 3" class="mobile-photo">
+                <img src="photo/administ/тг бот/админ п.png" alt="Работа 4" class="mobile-photo">
+                <img src="photo/administ/тг бот/увед мк.png" alt="Работа 5" class="mobile-photo">
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 <section class="administ-section">
     <div class="administ-container">
         <div class="administ-content">
@@ -203,6 +240,28 @@
         </div>
     </div>
 </section>
+
+
+<section class="zakaz-section">
+    <div class="zakaz-container">
+        <div class="zakaz-content">
+            <h2 class="zakaz-title">Увеличьте доход уже сейчас</h2>
+            <p class="zakaz-description">Освободите свое время от рутины, сотрудников — от дополнительных задач, а бизнес — от ошибок.</p>
+            <!-- Кнопка для десктопной версии -->
+            <button class="zakaz-btn desktop-btn">Заказать сайт</button>
+        </div>
+        <div class="zakaz-visual">
+            <img src="photo/administ/graph.png" alt="Zapisall интерфейс" class="zakaz-image">
+        </div>
+        <!-- Кнопка для мобильной версии -->
+        <button class="zakaz-btn mobile-btn">Заказать сайт</button>
+    </div>
+</section>
+
+
+
+
+
 
     <script src="js/main.js"></script>
     <script src="js/header.js"></script>

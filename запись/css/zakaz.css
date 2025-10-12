@@ -1,0 +1,139 @@
+.zakaz-section {
+    padding: 0px 20px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.zakaz-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    padding: 3% 7%;
+    background-color: #f2f3f7;
+    border-radius: 33px;
+}
+
+.zakaz-content {
+    flex: 1;
+    text-align: left;
+}
+
+.zakaz-title {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.zakaz-description {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.zakaz-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #2b3134;
+    color: rgb(255 255 255);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.zakaz-btn:hover {
+    background: #2b3134c7;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.zakaz-visual {
+    flex: 1;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.zakaz-image {
+    width: 100%;
+    max-width: 270px;
+    height: auto;
+    border-radius: 15px;
+}
+
+/* Скрываем мобильную кнопку в десктопе */
+.mobile-btn {
+    display: none;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .zakaz-section {
+        padding: 0px 15px;
+    }
+    
+    .zakaz-container {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .zakaz-content {
+        text-align: center;
+        order: 1; /* Текст будет первым */
+    }
+    
+    .zakaz-visual {
+        order: 2; /* Фото будет вторым */
+    }
+    
+    /* Показываем мобильную кнопку и скрываем десктопную */
+    .mobile-btn {
+        display: block;
+        order: 3; /* Кнопка будет третьей (после фото) */
+    }
+    
+    .zakaz-content .zakaz-btn {
+        display: none; /* Скрываем кнопку внутри контента */
+    }
+    
+    .zakaz-title {
+        font-size: 32px;
+    }
+    
+    .zakaz-description {
+        font-size: 16px;
+    }
+    
+    .zakaz-image {
+        max-width: 80%;
+    }
+    
+    .zakaz-btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .zakaz-title {
+        font-size: 28px;
+    }
+    
+    .zakaz-description {
+        font-size: 14px;
+    }
+    
+    .zakaz-btn {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+}

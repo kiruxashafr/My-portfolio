@@ -1,0 +1,123 @@
+.photo-section {
+    padding: 0px 20px;
+    background-color: #fff;
+    width: 100%;
+}
+
+.photo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-title {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 40px;
+    line-height: 1.2;
+}
+
+/* Десктоп версия - сетка 2+3 */
+.desktop-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.top-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.bottom-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.desktop-photo {
+    width: calc(33.333% - 14px); /* 3 фото с учетом gap */
+    max-width: 380px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.desktop-photo-gr {
+    width: calc(50% - 10px); /* 2 фото с учетом gap */
+    max-width: 580px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+
+
+/* Мобильная версия - горизонтальный слайдер */
+.mobile-slider {
+    display: none;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.mobile-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.mobile-slider-container {
+    display: flex;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.mobile-photo {
+    width: 280px;
+
+    border-radius: 15px;
+    object-fit: cover;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.mobile-photo:active {
+    transform: scale(0.95);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .photo-section {
+        padding: 0px 15px;
+    }
+    
+    .photo-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .desktop-photos {
+        display: none;
+    }
+    
+    .mobile-slider {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-title {
+        font-size: 1.8rem;
+    }
+    
+    .mobile-photo {
+        width: 250px;
+        height: 180px;
+    }
+}
