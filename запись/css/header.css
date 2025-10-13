@@ -200,6 +200,12 @@ ul li.draw::after {
     height: 2em;
 }
 
+/* Стили для скрытия header при скролле вниз */
+.header.header-hidden {
+    transform: translateY(-100%);
+}
+
+/* Убедитесь, что header имеет transition для плавной анимации */
 .header {
     position: fixed;
     top: 0;
@@ -208,15 +214,11 @@ ul li.draw::after {
     background: rgba(27, 28, 29, 0.5);
     backdrop-filter: blur(5px);
     z-index: 1000;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out; /* Это уже есть, проверьте */
     padding: 1em 2em;
     box-sizing: border-box;
     border: none;
     border-bottom: 1px solid rgb(250 250 250 / 20%);
-}
-
-.header.hidden {
-    transform: translateY(-100%);
 }
 
 .header-content {

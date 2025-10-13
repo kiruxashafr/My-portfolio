@@ -4,6 +4,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const menuItems = document.querySelectorAll('.modal-content ul li');
 
+    // Переменные для управления скроллом
+    let lastScrollTop = 0;
+    const header = document.querySelector('.header');
+    const headerHeight = header.offsetHeight;
+
+    // Функция для скрытия/показа header при скролле
+    window.addEventListener('scroll', () => {
+        let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (currentScroll > lastScrollTop && currentScroll > headerHeight) {
+            // Скролл вниз - скрываем header
+            header.classList.add('header-hidden');
+        } else {
+            // Скролл вверх - показываем header
+            header.classList.remove('header-hidden');
+        }
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    });
+
     // Открытие/закрытие меню по клику на гамбургер
     hamburgerInput.addEventListener('change', () => {
         if (hamburgerInput.checked) {

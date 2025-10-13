@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/administ.css">
     <link rel="stylesheet" href="css/zakaz.css">
     <link rel="stylesheet" href="css/photo.css">
+    <link rel="stylesheet" href="css/contacts.css">
+    <link rel="stylesheet" href="css/glavn.css">
 
 </head>
 
@@ -206,8 +208,9 @@
             </div>
             <div class="bottom-row">
                 <img src="photo/administ/тг бот/увед к.png" alt="Работа 3" class="desktop-photo">
-                <img src="photo/administ/тг бот/админ п.png" alt="Работа 4" class="desktop-photo">
                 <img src="photo/administ/тг бот/увед мк.png" alt="Работа 5" class="desktop-photo">
+                <img src="photo/administ/тг бот/админ п.png" alt="Работа 4" class="desktop-photo">
+
             </div>
         </div>
         
@@ -258,13 +261,136 @@
     </div>
 </section>
 
+<!-- Новая секция "Контакты" -->
+<section class="contacts-section" id="contacts">
+    <div class="contacts-container">
+        <!-- Визуальная часть (изображение) -->
+        <div class="contacts-visual">
+            <img src="photo/administ/desktop.png" alt="Консультация" class="contacts-image">
+        </div>
+        <!-- Контентная часть (текст и форма) -->
+        <div class="contacts-content">
+            <h2 class="contacts-title">Не знаете с чего начать?</h2>
+            <p class="contacts-description">Оставьте свои контакты и мы проконсультируем вас по всем вопросам</p>
+            
+            <form class="contacts-form" id="consultation-form">
+                <div class="input-group">
+                    <input type="text" id="name" name="name" required placeholder=" ">
+                    <label for="name">Ваше имя</label>
+                </div>
+                
+                <div class="input-group">
+                    <input type="tel" id="phone" name="phone" required placeholder=" ">
+                    <label for="phone">Ваш номер телефона</label>
+                </div>
+                
+                <button type="submit" class="contacts-btn">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
 
-
-
+<!-- Секция Страница пользователя -->
+<!-- Исправленная секция "Страница пользователя" -->
+    <section class="userpage-section">
+        <div class="userpage-container">
+            <h2 class="userpage-title">Страница пользователя</h2>
+            
+            <!-- Универсальный слайдер для всех устройств -->
+            <div class="universal-slider">
+                <div class="slider-container">
+                    <!-- Индикаторы шагов -->
+                    <div class="step-indicators">
+                        <div class="step-number active" data-slide="0">1</div>
+                        <div class="step-number" data-slide="1">2.1</div>
+                        <div class="step-number" data-slide="2">2.2</div>
+                        <div class="step-number" data-slide="3">2.3</div>
+                        <div class="step-number" data-slide="4">3</div>
+                    </div>
+                    
+                    <!-- Контент слайдера -->
+                    <div class="slider-content">
+                        <div class="slide-track">
+                            <!-- Слайд 1 -->
+                            <div class="slide">
+                                <div class="slide-image">
+                                    <img src="photo/administ/главная/1.png" alt="Функция 1">
+                                </div>
+                                <div class="slide-text">
+                                    <h3>Подпись к фото 1</h3>
+                                    <p>Описание функциональности или преимущества, которое показано на изображении. Клиенты могут легко записаться на услугу в любое время суток.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 2.1 -->
+                            <div class="slide">
+                                <div class="slide-image">
+                                    <img src="photo/administ/главная/2.png" alt="Функция 2.1">
+                                </div>
+                                <div class="slide-text">
+                                    <h3>Подпись к фото 2.1</h3>
+                                    <p>Описание функциональности или преимущества, которое показано на изображении. Удобный выбор даты и времени для записи.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 2.2 -->
+                            <div class="slide">
+                                <div class="slide-image">
+                                    <img src="photo/administ/главная/3.png" alt="Функция 2.2">
+                                </div>
+                                <div class="slide-text">
+                                    <h3>Подпись к фото 2.2</h3>
+                                    <p>Описание функциональности или преимущества, которое показано на изображении. Подробная информация о специалистах и их рейтингах.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 2.3 -->
+                            <div class="slide">
+                                <div class="slide-image">
+                                    <img src="photo/administ/главная/4.png" alt="Функция 2.3">
+                                </div>
+                                <div class="slide-text">
+                                    <h3>Подпись к фото 2.3</h3>
+                                    <p>Описание функциональности или преимущества, которое показано на изображении. Просмотр доступных услуг и их стоимости.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Слайд 3 -->
+                            <div class="slide">
+                                <div class="slide-image">
+                                    <img src="photo/administ/главная/5.png" alt="Функция 3">
+                                </div>
+                                <div class="slide-text">
+                                    <h3>Подпись к фото 3</h3>
+                                    <p>Описание функциональности или преимущества, которое показано на изображении. Подтверждение записи и получение напоминания.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Навигационные кнопки -->
+                    <div class="slider-nav">
+                        <button class="nav-btn prev-btn" disabled>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <button class="nav-btn next-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <script src="js/main.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/contacts.js"></script>
+    <script src="js/glavn.js"></script>
 
 </body>
 </html>
