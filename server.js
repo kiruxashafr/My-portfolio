@@ -66,6 +66,28 @@ app.use('/delivery/fonts', express.static(path.join(__dirname, 'доставка
     }
 }));
 
+
+app.use('/delivery/css', express.static(path.join(__dirname, 'запись', 'css'), {
+    setHeaders: (res, filePath) => {
+        console.log(`Serving static file: ${filePath}`);
+    }
+}));
+app.use('/delivery/js', express.static(path.join(__dirname, 'запись', 'js'), {
+    setHeaders: (res, filePath) => {
+        console.log(`Serving static file: ${filePath}`);
+    }
+}));
+app.use('/delivery/photo', express.static(path.join(__dirname, 'запись', 'photo'), {
+    setHeaders: (res, filePath) => {
+        console.log(`Serving static file: ${filePath}`);
+    }
+}));
+app.use('/delivery/fonts', express.static(path.join(__dirname, 'запись', 'fonts'), {
+    setHeaders: (res, filePath) => {
+        console.log(`Serving static file: ${filePath}`);
+    }
+}));
+
 // Root route for главная.html
 app.get('/', (req, res) => {
     const filePath = path.join(__dirname, 'главная', 'главная.html');
@@ -87,6 +109,18 @@ app.get('/delivery', (req, res) => {
         res.sendFile(filePath);
     } else {
         res.status(404).send(`404: сайтдоставки.html not found at ${filePath}`);
+    }
+});
+
+// Route for /delivery to serve сайтдоставки.html
+app.get('/zapisall', (req, res) => {
+    const filePath = path.join(__dirname, 'запись', 'zapisall.html');
+    console.log(`Attempting to serve delivery: ${filePath}`);
+    console.log(`File exists: ${fs.existsSync(filePath)}`);
+    if (fs.existsSync(filePath)) {
+        res.sendFile(filePath);
+    } else {
+        res.status(404).send(`404: zapisall.html not found at ${filePath}`);
     }
 });
 
