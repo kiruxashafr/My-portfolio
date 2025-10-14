@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sliderTrack = document.querySelector('.slide-track');
     const stepNumbers = document.querySelectorAll('.step-number');
+    const stepNumbersAll = document.querySelectorAll('.step-number, .step-numbers'); // Все элементы навигации
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -13,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Перемещаем слайдер
         sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
         
-        // Обновляем активный шаг
-        stepNumbers.forEach((step, index) => {
+        // Обновляем активный шаг для всех элементов навигации
+        stepNumbersAll.forEach((step, index) => {
             if (index === currentSlide) {
                 step.classList.add('active');
             } else {
@@ -43,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Обработчик для клика по номеру шага
-    stepNumbers.forEach((step, index) => {
+    // Обработчик для клика по всем элементам навигации (включая Контакты и О нас)
+    stepNumbersAll.forEach((step, index) => {
         step.addEventListener('click', function() {
             currentSlide = index;
             updateSlider();

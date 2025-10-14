@@ -1,5 +1,6 @@
 .userpage-section {
     padding: 80px 20px;
+    padding-top: 0;
     background-color: #fff;
     width: 100%;
     padding-bottom: 0;
@@ -73,6 +74,28 @@
     border-color: #3a0000;
 }
 
+.step-numbers {
+    padding: 10px 10px;
+    border-radius: 10px;
+    background: #f0f0f0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.step-numbers.active {
+    background: #3a0000;
+    color: white;
+    border-color: #3a0000;
+}
+
 /* Навигационные кнопки слева и справа от цифр */
 .nav-btn {
     width: 50px;
@@ -87,6 +110,11 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1.2rem;
+    /* Добавляем фиксированные минимальные размеры */
+    min-width: 50px;
+    min-height: 50px;
+    /* Запрещаем сжатие */
+    flex-shrink: 0;
 }
 
 .nav-btn:hover {
@@ -186,6 +214,8 @@
     .nav-btn {
         width: 60px;
         height: 60px;
+        min-width: 60px;
+        min-height: 60px;
     }
 }
 
@@ -193,6 +223,7 @@
 @media (max-width: 768px) {
     .userpage-section {
         padding: 60px 15px;
+        padding-top: 0;
         padding-bottom: 0;
     }
     
@@ -218,6 +249,8 @@
     .nav-btn {
         width: 40px;
         height: 40px;
+        min-width: 40px;
+        min-height: 40px;
     }
     
 
@@ -228,5 +261,18 @@
     
     .slide-text p {
         font-size: 0.9rem;
+    }
+}
+
+
+@media (max-width: 410px) {
+    .step-indicators{
+        gap: 5px;
+    }}
+
+    @media (max-width: 410px) {
+    .step-number {
+        width: 35px;
+        height: 35px;
     }
 }
