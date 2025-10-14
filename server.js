@@ -67,22 +67,22 @@ app.use('/delivery/fonts', express.static(path.join(__dirname, 'доставка
 }));
 
 
-app.use('/delivery/css', express.static(path.join(__dirname, 'запись', 'css'), {
+app.use('/zapisall/css', express.static(path.join(__dirname, 'запись', 'css'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/delivery/js', express.static(path.join(__dirname, 'запись', 'js'), {
+app.use('/zapisall/js', express.static(path.join(__dirname, 'запись', 'js'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/delivery/photo', express.static(path.join(__dirname, 'запись', 'photo'), {
+app.use('/zapisall/photo', express.static(path.join(__dirname, 'запись', 'photo'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
 }));
-app.use('/delivery/fonts', express.static(path.join(__dirname, 'запись', 'fonts'), {
+app.use('/zapisall/fonts', express.static(path.join(__dirname, 'запись', 'fonts'), {
     setHeaders: (res, filePath) => {
         console.log(`Serving static file: ${filePath}`);
     }
