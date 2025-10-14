@@ -1,4 +1,4 @@
-/* back-office.css - ОБНОВЛЕННЫЙ */
+/* back-office.css - ПЕРЕИМЕНОВАНО ДЛЯ ИЗБЕЖАНИЯ КОНФЛИКТОВ */
 .admin-section {
     padding: 80px 20px;
     background-color: #fff;
@@ -20,83 +20,61 @@
     line-height: 1.2;
 }
 
-.admin-slider {
+/* Универсальный слайдер для бек-офиса */
+.admin-universal-slider {
     position: relative;
     width: 100%;
 }
 
-.slider-wrapper {
+.admin-slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Контейнер для навигации */
+.admin-slider-navigation {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 30px;
-}
-
-.slides-container {
-    display: flex;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.slide-track {
-    display: flex;
-    transition: transform 0.5s ease;
+    margin-bottom: 20px;
     width: 100%;
 }
 
-.slide {
-    flex: 0 0 100%;
-    min-width: 100%;
+.admin-step-indicators {
     display: flex;
-    background: #fff;
-}
-
-.slide-image {
-    flex: 0 0 60%;
-    position: relative;
-    overflow: hidden;
-}
-
-.slide-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.slide:hover .slide-image img {
-    transform: scale(1.05);
-}
-
-.slide-content {
-    flex: 0 0 40%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
+    gap: 15px;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
-.slide-title {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #000;
-    margin-bottom: 15px;
-    line-height: 1.3;
-}
-
-.slide-description {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 1rem;
+.admin-step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f0f0f0;
     color: #666;
-    line-height: 1.6;
-    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
-.slider-nav {
+.admin-step-number.active {
+    background: #3a0000;
+    color: white;
+    border-color: #3a0000;
+}
+
+/* Навигационные кнопки слева и справа от цифр */
+.admin-nav-btn {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -108,43 +86,166 @@
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-size: 1.2rem;
+    min-width: 50px;
+    min-height: 50px;
     flex-shrink: 0;
 }
 
-.slider-nav:hover {
+.admin-nav-btn:hover {
     background: #5a0000;
     transform: scale(1.05);
 }
 
-.slider-nav:disabled {
+.admin-nav-btn:disabled {
     background: #cccccc;
     cursor: not-allowed;
     transform: none;
 }
 
-.slider-indicators {
+.admin-slider-content {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.admin-slide-track {
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
+    transition: transform 0.5s ease;
 }
 
-.indicator {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ddd;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.admin-slide {
+    flex: 0 0 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
-.indicator.active {
-    background: #3a0000;
-    transform: scale(1.2);
+.admin-slide-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.admin-slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-slide-text {
+    text-align: center;
+    max-width: 600px;
+}
+
+.admin-slide-text h3 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 15px;
+}
+
+.admin-slide-text p {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Десктоп версия с горизонтальным расположением */
+@media (min-width: 769px) {
+    .admin-slide {
+        flex-direction: row;
+        text-align: left;
+        gap: 40px;
+        margin-bottom: auto;
+    }
+
+    .admin-slide-image {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .admin-slide-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .admin-step-indicators {
+        gap: 20px;
+    }
+
+    .admin-step-number {
+        width: 60px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+
+    .admin-nav-btn {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
+        min-height: 60px;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .admin-section {
+        padding: 60px 15px;
+    }
+    
+    .admin-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-title {
+        font-size: 1.8rem;
+    }
+    
+    .admin-step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+    
+    .admin-nav-btn {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .admin-slide-text h3 {
+        font-size: 1.3rem;
+    }
+    
+    .admin-slide-text p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 410px) {
+    .admin-step-indicators {
+        gap: 5px;
+    }
+    
+    .admin-step-number {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 /* Модальное окно для мобильной версии с приближением */
-.modal-overlay {
+.admin-modal-overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -159,11 +260,11 @@
     box-sizing: border-box;
 }
 
-.modal-overlay.active {
+.admin-modal-overlay.active {
     display: flex;
 }
 
-.modal-content {
+.admin-modal-content {
     position: relative;
     background: #fff;
     border-radius: 15px;
@@ -174,7 +275,7 @@
     flex-direction: column;
 }
 
-.modal-close {
+.admin-modal-close {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -192,11 +293,11 @@
     transition: background 0.3s ease;
 }
 
-.modal-close:hover {
+.admin-modal-close:hover {
     background: rgba(0, 0, 0, 0.9);
 }
 
-.modal-image-container {
+.admin-modal-image-container {
     width: 100%;
     height: 60vh;
     overflow: hidden;
@@ -206,7 +307,7 @@
     background: #f5f5f5;
 }
 
-.modal-image-container img {
+.admin-modal-image-container img {
     width: auto;
     height: auto;
     max-width: 100%;
@@ -216,16 +317,16 @@
     cursor: zoom-in;
 }
 
-.modal-image-container.zoomed img {
+.admin-modal-image-container.zoomed img {
     transform: scale(1.5);
     cursor: zoom-out;
 }
 
-.modal-text {
+.admin-modal-text {
     padding: 20px;
 }
 
-.modal-text h3 {
+.admin-modal-text h3 {
     font-family: 'Inter', Arial, sans-serif;
     font-size: 1.5rem;
     font-weight: 600;
@@ -233,7 +334,7 @@
     margin-bottom: 10px;
 }
 
-.modal-text p {
+.admin-modal-text p {
     font-family: 'Inter', Arial, sans-serif;
     font-size: 1rem;
     color: #666;
@@ -241,124 +342,25 @@
     margin: 0;
 }
 
-/* Мобильная версия */
-@media (max-width: 768px) {
-    .admin-section {
-        padding: 60px 15px;
-    }
-    
-    .admin-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-    
-    .slider-wrapper {
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    
-    .slides-container {
-        border-radius: 10px;
-        overflow: visible;
-    }
-    
-    .slide-track {
-        display: flex;
-        transition: transform 0.5s ease;
-    }
-    
-    .slide {
-        flex-direction: column;
-        padding: 0;
-    }
-    
-    .slide-image {
-        flex: 0 0 auto;
-
-        border-radius: 10px 10px 0 0;
-    }
-    
-    .slide-content {
-        flex: 0 0 auto;
-        padding: 25px;
-    }
-    
-    .slide-title {
-        font-size: 1.5rem;
-    }
-    
-    .slide-description {
-        font-size: 0.9rem;
-    }
-    
-    .slider-nav {
-        width: 40px;
-        height: 40px;
-    }
-    
-    /* Скрываем кнопки навигации на мобильных */
-    .slider-nav {
-        display: none;
-    }
-    
-    /* Свободный слайд на мобильных */
-    .slides-container {
-        overflow: visible;
-    }
-    
-    .slide {
-        scroll-snap-align: start;
-        margin: 0 10px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .slide:first-child {
-        margin-left: 0;
-    }
-    
-    .slide:last-child {
-        margin-right: 0;
-    }
-}
-
 @media (max-width: 480px) {
-    .admin-title {
-        font-size: 1.8rem;
-    }
-    
-
-    
-    .slide-content {
-        padding: 20px;
-    }
-    
-    .slide-title {
-        font-size: 1.3rem;
-    }
-    
-    .slide-description {
-        font-size: 0.85rem;
-    }
-    
-    .modal-content {
+    .admin-modal-content {
         width: 98%;
         max-height: 95vh;
     }
     
-    .modal-image-container {
+    .admin-modal-image-container {
         height: 50vh;
     }
     
-    .modal-text {
+    .admin-modal-text {
         padding: 15px;
     }
     
-    .modal-text h3 {
+    .admin-modal-text h3 {
         font-size: 1.3rem;
     }
     
-    .modal-text p {
+    .admin-modal-text p {
         font-size: 0.9rem;
     }
 }

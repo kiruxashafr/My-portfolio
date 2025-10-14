@@ -396,134 +396,146 @@
     <div class="admin-container">
         <h2 class="admin-title">Страница администратора</h2>
         
-        <div class="admin-slider">
-            <div class="slider-wrapper">
-                <!-- Кнопки навигации -->
-                <button class="slider-nav prev-btn" aria-label="Предыдущий слайд">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                
-                <!-- Контейнер слайдов -->
-                <div class="slides-container">
-                        <div class="slide-track">
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/1.png" alt="Журнал записи">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Журнал записи</h3>
-                            <p class="slide-description">Добавляйте, редактируйте и отслеживайте записи клиентов. Удобный интерфейс для управления всеми бронированиями.</p>
-                        </div>
+        <!-- Универсальный слайдер для бек-офиса -->
+        <div class="admin-universal-slider">
+            <div class="admin-slider-container">
+                <!-- Контейнер навигации с кнопками слева и справа -->
+                <div class="admin-slider-navigation">
+                    <button class="admin-nav-btn prev-btn" disabled>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    
+                    <!-- Индикаторы шагов -->
+                    <div class="admin-step-indicators">
+                        <div class="admin-step-number active" data-slide="0">1</div>
+                        <div class="admin-step-number" data-slide="1">2</div>
+                        <div class="admin-step-number" data-slide="2">3</div>
+                        <div class="admin-step-number" data-slide="3">4</div>
+                        <div class="admin-step-number" data-slide="4">5</div>
+                        <div class="admin-step-number" data-slide="5">6</div>
+                        <div class="admin-step-number" data-slide="6">7</div>
+                        <div class="admin-step-number" data-slide="7">8</div>
                     </div>
                     
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/2.png" alt="Управление свободным временем">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Управление свободным временем</h3>
-                            <p class="slide-description">Добавляйте доступное время для записи - как отдельные слоты, так и периоды на несколько дней. Ускорьте заполнение расписания.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/3.png" alt="Расписание">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Расписание</h3>
-                            <p class="slide-description">Удобный просмотр записей и свободного времени одного мастера или всех специалистов. Уникальная функция - создание фото с расписанием.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/4.png" alt="Управление мастерами">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Управление мастерами</h3>
-                            <p class="slide-description">Добавляйте, скрывайте и удаляйте мастеров на сайте. Полный контроль над профилями специалистов.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/5.png" alt="Управление услугами">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Управление услугами</h3>
-                            <p class="slide-description">Создавайте и редактируйте услуги, устанавливайте цены и описания. Управление каталогом услуг аналогично управлению мастерами.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/6.png" alt="Клиентская база">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Клиентская база</h3>
-                            <p class="slide-description">Просматривайте, сортируйте и ищите клиентов. Анализируйте статистику каждого клиента для персонализированного подхода.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/7.png" alt="Статистика">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Статистика</h3>
-                            <p class="slide-description">Общая статистика проекта за любой промежуток времени. Отдельная аналитика по мастерам и услугам для принятия взвешенных решений.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="slide">
-                        <div class="slide-image">
-                            <img src="photo/administ/бек офис/8.png" alt="Настройки">
-                        </div>
-                        <div class="slide-content">
-                            <h3 class="slide-title">Настройки</h3>
-                            <p class="slide-description">Управляйте уведомлениями в Telegram, редактируйте фото по умолчанию для мастеров и услуг, изменяйте содержимое страницы пользователя.</p>
-                        </div>
-                    </div>
-                    </div>
+                    <button class="admin-nav-btn next-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
                 </div>
                 
-                <button class="slider-nav next-btn" aria-label="Следующий слайд">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <!-- Индикаторы слайдов -->
-            <div class="slider-indicators">
-                <span class="indicator active" data-index="0"></span>
-                <span class="indicator" data-index="1"></span>
-                <span class="indicator" data-index="2"></span>
-                <span class="indicator" data-index="3"></span>
-                <span class="indicator" data-index="4"></span>
-                <span class="indicator" data-index="5"></span>
-                <span class="indicator" data-index="6"></span>
-                <span class="indicator" data-index="7"></span>
+                <!-- Контент слайдера -->
+                <div class="admin-slider-content">
+                    <div class="admin-slide-track">
+                        <!-- Слайд 1 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/1.png" alt="Журнал записи">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Журнал записи</h3>
+                                <p>Добавляйте, редактируйте и отслеживайте записи клиентов. Удобный интерфейс для управления всеми бронированиями.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 2 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/2.png" alt="Управление свободным временем">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Управление свободным временем</h3>
+                                <p>Добавляйте доступное время для записи - как отдельные слоты, так и периоды на несколько дней. Ускорьте заполнение расписания.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Остальные слайды с аналогичной структурой... -->
+                        <!-- Слайд 3 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/3.png" alt="Расписание">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Расписание</h3>
+                                <p>Удобный просмотр записей и свободного времени одного мастера или всех специалистов. Уникальная функция - создание фото с расписанием.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 4 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/4.png" alt="Управление мастерами">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Управление мастерами</h3>
+                                <p>Добавляйте, скрывайте и удаляйте мастеров на сайте. Полный контроль над профилями специалистов.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 5 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/5.png" alt="Управление услугами">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Управление услугами</h3>
+                                <p>Создавайте и редактируйте услуги, устанавливайте цены и описания. Управление каталогом услуг аналогично управлению мастерами.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 6 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/6.png" alt="Клиентская база">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Клиентская база</h3>
+                                <p>Просматривайте, сортируйте и ищите клиентов. Анализируйте статистику каждого клиента для персонализированного подхода.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 7 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/7.png" alt="Статистика">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Статистика</h3>
+                                <p>Общая статистика проекта за любой промежуток времени. Отдельная аналитика по мастерам и услугам для принятия взвешенных решений.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Слайд 8 -->
+                        <div class="admin-slide">
+                            <div class="admin-slide-image">
+                                <img src="photo/administ/бек офис/8.png" alt="Настройки">
+                            </div>
+                            <div class="admin-slide-text">
+                                <h3>Настройки</h3>
+                                <p>Управляйте уведомлениями в Telegram, редактируйте фото по умолчанию для мастеров и услуг, изменяйте содержимое страницы пользователя.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
         <!-- Модальное окно для мобильной версии -->
-        <div class="modal-overlay" id="image-modal">
-            <div class="modal-content">
-                <button class="modal-close" id="modal-close">
+        <div class="admin-modal-overlay" id="admin-image-modal">
+            <div class="admin-modal-content">
+                <button class="admin-modal-close" id="admin-modal-close">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </button>
-                <div class="modal-image-container">
-                    <img id="modal-image" src="" alt="">
+                <div class="admin-modal-image-container">
+                    <img id="admin-modal-image" src="" alt="">
                 </div>
-                <div class="modal-text">
-                    <h3 id="modal-title"></h3>
-                    <p id="modal-description"></p>
+                <div class="admin-modal-text">
+                    <h3 id="admin-modal-title"></h3>
+                    <p id="admin-modal-description"></p>
                 </div>
             </div>
         </div>

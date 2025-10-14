@@ -1,180 +1,165 @@
-// back-office.js - ОБНОВЛЕННЫЙ
+// back-office.js - ПЕРЕИМЕНОВАНО ДЛЯ ИЗБЕЖАНИЯ КОНФЛИКТОВ
 document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.admin-slider');
-    if (!slider) return;
+    const adminSlider = document.querySelector('.admin-universal-slider');
+    if (!adminSlider) return;
     
-    const slidesContainer = slider.querySelector('.slides-container');
-    const slideTrack = slider.querySelector('.slide-track') || slidesContainer;
-    const slides = slider.querySelectorAll('.slide');
-    const prevBtn = slider.querySelector('.prev-btn');
-    const nextBtn = slider.querySelector('.next-btn');
-    const indicators = slider.querySelectorAll('.indicator');
-    const modal = document.getElementById('image-modal');
-    const modalImage = document.getElementById('modal-image');
-    const modalImageContainer = modal ? modal.querySelector('.modal-image-container') : null;
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const modalClose = document.getElementById('modal-close');
+    const adminSlideTrack = adminSlider.querySelector('.admin-slide-track');
+    const adminStepNumbers = adminSlider.querySelectorAll('.admin-step-number');
+    const adminSlides = adminSlider.querySelectorAll('.admin-slide');
+    const adminPrevBtn = adminSlider.querySelector('.admin-nav-btn.prev-btn');
+    const adminNextBtn = adminSlider.querySelector('.admin-nav-btn.next-btn');
+    const adminModal = document.getElementById('admin-image-modal');
+    const adminModalImage = document.getElementById('admin-modal-image');
+    const adminModalImageContainer = adminModal ? adminModal.querySelector('.admin-modal-image-container') : null;
+    const adminModalTitle = document.getElementById('admin-modal-title');
+    const adminModalDescription = document.getElementById('admin-modal-description');
+    const adminModalClose = document.getElementById('admin-modal-close');
     
-    let currentSlide = 0;
-    const totalSlides = slides.length;
-    let isModalZoomed = false;
+    let adminCurrentSlide = 0;
+    const adminTotalSlides = adminSlides.length;
+    let adminIsModalZoomed = false;
     
-    // Функция обновления слайдера
-    function updateSlider() {
-        // Устанавливаем правильное смещение для слайдов
-        slideTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Функция для обновления состояния слайдера
+    function updateAdminSlider() {
+        // Перемещаем слайдер
+        adminSlideTrack.style.transform = `translateX(-${adminCurrentSlide * 100}%)`;
         
-        // Обновление индикаторов
-        indicators.forEach((indicator, index) => {
-            if (index === currentSlide) {
-                indicator.classList.add('active');
+        // Обновляем активный шаг
+        adminStepNumbers.forEach((step, index) => {
+            if (index === adminCurrentSlide) {
+                step.classList.add('active');
             } else {
-                indicator.classList.remove('active');
+                step.classList.remove('active');
             }
         });
         
-        // Обновление состояния кнопок
-        if (prevBtn) prevBtn.disabled = currentSlide === 0;
-        if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
+        // Обновляем состояние кнопок
+        adminPrevBtn.disabled = adminCurrentSlide === 0;
+        adminNextBtn.disabled = adminCurrentSlide === adminTotalSlides - 1;
     }
     
-    // Переход к следующему слайду
-    function nextSlide() {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-            updateSlider();
+    // Обработчик для кнопки "Назад"
+    adminPrevBtn.addEventListener('click', function() {
+        if (adminCurrentSlide > 0) {
+            adminCurrentSlide--;
+            updateAdminSlider();
         }
-    }
+    });
     
-    // Переход к предыдущему слайду
-    function prevSlide() {
-        if (currentSlide > 0) {
-            currentSlide--;
-            updateSlider();
+    // Обработчик для кнопки "Вперед"
+    adminNextBtn.addEventListener('click', function() {
+        if (adminCurrentSlide < adminTotalSlides - 1) {
+            adminCurrentSlide++;
+            updateAdminSlider();
         }
-    }
+    });
     
-    // Переход к конкретному слайду
-    function goToSlide(index) {
-        if (index >= 0 && index < totalSlides) {
-            currentSlide = index;
-            updateSlider();
-        }
-    }
+    // Обработчик для клика по элементам навигации
+    adminStepNumbers.forEach((step, index) => {
+        step.addEventListener('click', function() {
+            adminCurrentSlide = index;
+            updateAdminSlider();
+        });
+    });
     
     // Открытие модального окна с изображением и приближением
-    function openModal(slideIndex) {
-        if (slideIndex >= 0 && slideIndex < totalSlides) {
-            const slide = slides[slideIndex];
+    function openAdminModal(slideIndex) {
+        if (slideIndex >= 0 && slideIndex < adminTotalSlides) {
+            const slide = adminSlides[slideIndex];
             const image = slide.querySelector('img').src;
-            const title = slide.querySelector('.slide-title').textContent;
-            const description = slide.querySelector('.slide-description').textContent;
+            const title = slide.querySelector('.admin-slide-text h3').textContent;
+            const description = slide.querySelector('.admin-slide-text p').textContent;
             
-            modalImage.src = image;
-            modalTitle.textContent = title;
-            modalDescription.textContent = description;
+            adminModalImage.src = image;
+            adminModalTitle.textContent = title;
+            adminModalDescription.textContent = description;
             
             // Сбрасываем состояние приближения
-            isModalZoomed = false;
-            if (modalImageContainer) {
-                modalImageContainer.classList.remove('zoomed');
+            adminIsModalZoomed = false;
+            if (adminModalImageContainer) {
+                adminModalImageContainer.classList.remove('zoomed');
             }
             
-            modal.classList.add('active');
+            adminModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     }
     
     // Функция переключения приближения в модальном окне
-    function toggleZoom() {
-        if (!modalImageContainer) return;
+    function toggleAdminZoom() {
+        if (!adminModalImageContainer) return;
         
-        isModalZoomed = !isModalZoomed;
-        modalImageContainer.classList.toggle('zoomed', isModalZoomed);
+        adminIsModalZoomed = !adminIsModalZoomed;
+        adminModalImageContainer.classList.toggle('zoomed', adminIsModalZoomed);
     }
     
     // Закрытие модального окна
-    function closeModal() {
-        modal.classList.remove('active');
+    function closeAdminModal() {
+        adminModal.classList.remove('active');
         document.body.style.overflow = '';
         
         // Сбрасываем состояние приближения
-        isModalZoomed = false;
-        if (modalImageContainer) {
-            modalImageContainer.classList.remove('zoomed');
+        adminIsModalZoomed = false;
+        if (adminModalImageContainer) {
+            adminModalImageContainer.classList.remove('zoomed');
         }
     }
     
-    // Обработчики событий для кнопок навигации
-    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-    
-    // Обработчики событий для индикаторов
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => goToSlide(index));
-    });
-    
     // Обработчики событий для модального окна
-    if (modalClose) modalClose.addEventListener('click', closeModal);
+    if (adminModalClose) adminModalClose.addEventListener('click', closeAdminModal);
     
     // Закрытие модального окна при клике на оверлей
-    if (modal) modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            closeModal();
+    if (adminModal) adminModal.addEventListener('click', function(e) {
+        if (e.target === adminModal) {
+            closeAdminModal();
         }
     });
     
     // Переключение приближения при клике на изображение в модальном окне
-    if (modalImage) {
-        modalImage.addEventListener('click', function(e) {
+    if (adminModalImage) {
+        adminModalImage.addEventListener('click', function(e) {
             e.stopPropagation();
-            toggleZoom();
+            toggleAdminZoom();
         });
     }
     
     // Обработчики событий для слайдов на мобильных устройствах
     if (window.innerWidth <= 768) {
-        slides.forEach((slide, index) => {
-            slide.addEventListener('click', () => openModal(index));
+        adminSlides.forEach((slide, index) => {
+            slide.addEventListener('click', () => openAdminModal(index));
         });
     }
     
     // Инициализация слайдера
-    updateSlider();
+    updateAdminSlider();
     
     // Обработка свайпов на мобильных устройствах
-    let startX = 0;
-    let endX = 0;
-    let isDragging = false;
+    let adminStartX = 0;
+    let adminEndX = 0;
     
-    slideTrack.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
+    adminSlideTrack.addEventListener('touchstart', function(e) {
+        adminStartX = e.touches[0].clientX;
     });
     
-    slideTrack.addEventListener('touchmove', (e) => {
-        if (!isDragging) return;
-        endX = e.touches[0].clientX;
+    adminSlideTrack.addEventListener('touchend', function(e) {
+        adminEndX = e.changedTouches[0].clientX;
+        handleAdminSwipe();
     });
     
-    slideTrack.addEventListener('touchend', () => {
-        if (!isDragging) return;
-        handleSwipe();
-        isDragging = false;
-    });
-    
-    function handleSwipe() {
+    function handleAdminSwipe() {
         const swipeThreshold = 50;
-        const diff = startX - endX;
         
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Свайп влево - следующий слайд
-                nextSlide();
-            } else {
-                // Свайп вправо - предыдущий слайд
-                prevSlide();
+        if (adminStartX - adminEndX > swipeThreshold) {
+            // Свайп влево - следующий слайд
+            if (adminCurrentSlide < adminTotalSlides - 1) {
+                adminCurrentSlide++;
+                updateAdminSlider();
+            }
+        } else if (adminEndX - adminStartX > swipeThreshold) {
+            // Свайп вправо - предыдущий слайд
+            if (adminCurrentSlide > 0) {
+                adminCurrentSlide--;
+                updateAdminSlider();
             }
         }
     }
@@ -182,24 +167,27 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработка клавиш клавиатуры
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') {
-            prevSlide();
+            if (adminCurrentSlide > 0) {
+                adminCurrentSlide--;
+                updateAdminSlider();
+            }
         } else if (e.key === 'ArrowRight') {
-            nextSlide();
-        } else if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-            closeModal();
+            if (adminCurrentSlide < adminTotalSlides - 1) {
+                adminCurrentSlide++;
+                updateAdminSlider();
+            }
+        } else if (e.key === 'Escape' && adminModal && adminModal.classList.contains('active')) {
+            closeAdminModal();
         }
     });
 
     // Обработка изменения размера окна
     window.addEventListener('resize', function() {
-        // Обновляем слайдер при изменении размера окна
-        updateSlider();
-        
         // Обновляем обработчики для мобильной версии
-        slides.forEach((slide, index) => {
-            slide.removeEventListener('click', () => openModal(index));
+        adminSlides.forEach((slide, index) => {
+            slide.removeEventListener('click', () => openAdminModal(index));
             if (window.innerWidth <= 768) {
-                slide.addEventListener('click', () => openModal(index));
+                slide.addEventListener('click', () => openAdminModal(index));
             }
         });
     });
