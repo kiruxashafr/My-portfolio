@@ -20,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработчики событий
     window.addEventListener('scroll', handleScrollAnimation);
     
-    // Обработчик для кнопки
-    document.querySelector('.order-btn').addEventListener('click', function() {
-        alert('Спасибо за интерес! Форма заказа будет здесь.');
-    });
+
 });
 
 

@@ -1,0 +1,291 @@
+/* Модальное окно контактов */
+.contact-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
+.contact-modal-content {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.close-contact-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 30px;
+    color: #3a0000;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-modal-header h2 {
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1b1c1d;
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.contact-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-profile {
+    text-align: center;
+    padding: 20px;
+    background: #6c6d74;
+    border-radius: 10px;
+    border: 1px solid rgba(250, 250, 250, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 45px;
+    object-fit: cover;
+    margin: 0 auto 15px;
+    object-position: top;
+    display: block;
+    border: 3px solid white;
+}
+
+.profile-name {
+    color: white;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.contact-boxx {
+    display: flex;
+    justify-content: space-evenly;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.contact-boxx a {
+    filter: brightness(0) invert(1);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.contact-boxx a:hover {
+    transform: scale(1.12);
+}
+
+.contact-link-vk img { width: 35px; height: 35px; }
+.contact-link-telegram img { width: 35px; height: 35px; }
+.contact-link-whatsapp img { width: 32px; height: 32px; }
+.contact-link-mail img { width: 35px; height: 35px; }
+.contact-link-phone img { width: 28px; height: 28px; }
+
+.contact-form-section {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.contact-form-section h4 {
+    font-family: 'Inter', Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.contact-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-modal-form .input-group {
+    position: relative;
+    width: 100%;
+}
+
+.contact-modal-form .input-group input {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 16px;
+    font-family: 'Inter', Arial, sans-serif;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: transparent;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.contact-modal-form .input-group input:focus {
+    border-bottom-color: #6c6d74;
+}
+
+.contact-modal-form .input-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    font-size: 16px;
+    color: #999;
+    font-family: 'Inter', Arial, sans-serif;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.contact-modal-form .input-group input:focus + label,
+.contact-modal-form .input-group input:not(:placeholder-shown) + label {
+    top: -15px;
+    font-size: 14px;
+    color: #6c6d74;
+}
+
+.contact-modal-btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    font-family: 'Inter', Arial, sans-serif;
+    background: #6c6d74;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.contact-modal-btn:hover {
+    background: #3b3c3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.contact-modal-btn:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Анимация появления */
+.contact-modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.contact-modal-content {
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+    .contact-modal-content {
+        padding: 20px;
+    }
+    
+    .contact-modal-header h2 {
+        font-size: 24px;
+    }
+    
+    .profile-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-name {
+        font-size: 18px;
+    }
+    
+    .contact-boxx {
+        padding: 8px;
+    }
+    
+    .contact-link-vk img { width: 30px; height: 30px; }
+    .contact-link-telegram img { width: 30px; height: 30px; }
+    .contact-link-whatsapp img { width: 28px; height: 28px; }
+    .contact-link-mail img { width: 30px; height: 30px; }
+    .contact-link-phone img { width: 24px; height: 24px; }
+    
+    .contact-form-section {
+        padding: 20px;
+    }
+    
+    .contact-form-section h4 {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-modal-content {
+        padding: 15px;
+    }
+    
+    .contact-modal-header h2 {
+        font-size: 20px;
+    }
+    
+    .profile-photo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .contact-boxx {
+        padding: 5px;
+    }
+}

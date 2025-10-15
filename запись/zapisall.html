@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/zapisall/css/contacts.css">
     <link rel="stylesheet" href="/zapisall/css/glavn.css">
     <link rel="stylesheet" href="/zapisall/css/back-office.css">
+    <link rel="stylesheet" href="/zapisall/css/zakazat.css">
 
 </head>
 
@@ -541,11 +542,59 @@
     </div>
 </section>
 
+
+
+
+<!-- Модальное окно контактов -->
+<div class="contact-modal" id="contact-modal">
+    <div class="contact-modal-content">
+        <button class="close-contact-modal">×</button>
+        
+        <div class="contact-modal-header">
+            <h2>КОНТАКТЫ</h2>
+        </div>
+        
+        <div class="contact-modal-body">
+            <div class="contact-profile">
+                <img src="/zapisall/photo/картинки/ава.jpg" alt="Profile Photo" class="profile-photo">
+                <h3 class="profile-name">Шафранов Кирилл</h3>
+                
+                <div class="contact-boxx">
+                    <a href="#" class="contact-link-vk"><img src="/zapisall/photo/header/vk.png" alt="VK"></a>
+                    <a href="#" class="contact-link-telegram"><img src="/zapisall/photo/header/tg.png" alt="Telegram"></a>
+                    <a href="#" class="contact-link-whatsapp"><img src="/zapisall/photo/header/pngwing.com (3).png" alt="WhatsApp"></a>
+                    <a href="#" class="contact-link-mail"><img src="/zapisall/photo/header/pngwing.com (1).png" alt="Mail"></a>
+                    <a href="#" class="contact-link-phone"><img src="/zapisall/photo/header/pngwing.com (4).png" alt="Phone"></a>
+                </div>
+            </div>
+            
+            <div class="contact-form-section">
+                <h4>Напишите ваши контакты и я свяжусь с вами в течение часа</h4>
+                <form class="contact-modal-form" id="contact-modal-form">
+                    <div class="input-group">
+                        <input type="text" id="modal-name" name="name" required placeholder=" ">
+                        <label for="modal-name">Ваше имя</label>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="tel" id="modal-phone" name="phone" required placeholder=" ">
+                        <label for="modal-phone">Ваш номер телефона</label>
+                    </div>
+                    
+                    <button type="submit" class="contact-modal-btn">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
     <script src="/zapisall/js/main.js"></script>
     <script src="/zapisall/js/header.js"></script>
     <script src="/zapisall/js/contacts.js"></script>
     <script src="/zapisall/js/glavn.js"></script>
     <script src="/zapisall/js/back-office.js"></script>
-
+    <script src="/zapisall/js/zakazat.js"></script>
 </body>
 </html>
