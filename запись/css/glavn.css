@@ -13,11 +13,11 @@
 
 .userpage-title {
     font-family: 'Inter', Arial, sans-serif;
-    font-size: 2.5rem;
+    font-size: 48px;
     font-weight: 700;
     color: #000;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
     line-height: 1.2;
 }
 
@@ -163,13 +163,13 @@
 }
 
 .slide-text {
-    text-align: center;
     max-width: 600px;
 }
 
 .slide-text h3 {
     font-family: 'Inter', Arial, sans-serif;
-    font-size: 1.5rem;
+    font-size: 2rem;
+    text-align: center;
     font-weight: 600;
     color: #000;
     margin-bottom: 15px;
@@ -178,6 +178,7 @@
 .slide-text p {
     font-family: 'Inter', Arial, sans-serif;
     font-size: 1rem;
+    text-align: justify;
     color: #666;
     line-height: 1.6;
 }
@@ -219,60 +220,61 @@
     }
 }
 
-/* Адаптивность */
+/* Мобильная версия слайдера с точками */
 @media (max-width: 768px) {
-    .userpage-section {
-        padding: 60px 15px;
-        padding-top: 0;
-        padding-bottom: 0;
+    .slider-navigation {
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 10px;
     }
     
-    .userpage-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
+    .slider-container{
+        gap: 0;
     }
-    
 
-}
+    .userpage-title{
+        margin-bottom: 20px;
+    }
 
-@media (max-width: 480px) {
-    .userpage-title {
-        font-size: 1.8rem;
+    .slide{
+        gap: 20px;
+    }
+
+    .slide-text p {
+        font-size: 12px;
+    }
+    .slide-text h3 {
+        font-size: 20px;
     }
     
-    .step-number {
-        width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
+    .step-indicators {
+        display: none; /* Скрываем цифры и слова на мобильных */
     }
     
     .nav-btn {
-        width: 40px;
-        height: 40px;
-        min-width: 40px;
-        min-height: 40px;
+        display: none; /* Скрываем кнопки навигации на мобильных */
     }
     
-
-    
-    .slide-text h3 {
-        font-size: 1.3rem;
+    /* Стили для точек-индикаторов - ПЕРЕМЕЩАЕМ СВЕРХУ */
+    .dots-indicators {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 20px; /* Отступ снизу от точек */
+        order: -1; /* Перемещаем точки перед контентом */
     }
     
-    .slide-text p {
-        font-size: 0.9rem;
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ddd;
+        transition: all 0.3s ease;
+        cursor: pointer;
     }
-}
-
-
-@media (max-width: 410px) {
-    .step-indicators{
-        gap: 5px;
-    }}
-
-    @media (max-width: 410px) {
-    .step-number {
-        width: 35px;
-        height: 35px;
+    
+    .dot.active {
+        background: #3a0000;
+        transform: scale(1.2);
     }
 }

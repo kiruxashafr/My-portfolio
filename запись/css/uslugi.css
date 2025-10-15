@@ -12,10 +12,10 @@
 
 .services-title {
     font-family: 'Inter', Arial, sans-serif;
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: 48px;
     font-weight: 700;
     color: #000;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     line-height: 1.2;
 }
 
