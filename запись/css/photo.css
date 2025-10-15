@@ -98,7 +98,7 @@
     }
     
     .photo-title {
-        font-size: 2rem;
+        font-size: 40px;
         margin-bottom: 30px;
     }
     
@@ -113,7 +113,7 @@
 
 @media (max-width: 480px) {
     .photo-title {
-        font-size: 1.8rem;
+        font-size: 30px;
     }
     
     .mobile-photo {

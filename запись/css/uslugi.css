@@ -149,6 +149,7 @@
     
     .services-title {
         margin-bottom: 40px;
+        font-size: 40px;
     }
     
     .service-card {
@@ -181,7 +182,11 @@
         font-size: 0.7rem;
     }
 }
-@media (max-width: 400px) {}
+@media (max-width: 480px) {
+    .services-title{
+        font-size: 30px;
+    }
+}
 
 .phot{
     width: 50%;

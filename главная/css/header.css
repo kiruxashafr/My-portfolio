@@ -149,13 +149,11 @@ main {
 
 .island {
     width: 100vw;
-    height: 93vh;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
-    transform: scale(1);
-    background: rgb(52, 65, 73);
-    filter: url(#octave1) brightness(2.25) contrast(1.05) blur(0.25rem);
+    background: url('../photo/фон/1.png') no-repeat center/cover;
 }
 
 ul {

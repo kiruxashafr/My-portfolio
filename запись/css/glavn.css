@@ -234,6 +234,7 @@
 
     .userpage-title{
         margin-bottom: 20px;
+        font-size: 40px;
     }
 
     .slide{
@@ -276,5 +277,11 @@
     .dot.active {
         background: #3a0000;
         transform: scale(1.2);
+    }
+}
+
+@media (max-width: 480px) {
+    .userpage-title{
+        font-size: 30px;
     }
 }

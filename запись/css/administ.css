@@ -55,7 +55,7 @@
         padding: 60px 15px;
     }
     .administ-title{
-        font-size: 32px;
+        font-size: 40px;
     }
     .administ-description{
         font-size: 16px;
@@ -86,7 +86,7 @@
 
 @media (max-width: 480px) {
     .administ-title{
-        font-size: 26px;
+        font-size: 30px;
     }
     .administ-description{
         font-size: 14px;

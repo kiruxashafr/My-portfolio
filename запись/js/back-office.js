@@ -8,16 +8,31 @@ document.addEventListener('DOMContentLoaded', function() {
     const adminSlides = adminSlider.querySelectorAll('.admin-slide');
     const adminPrevBtn = adminSlider.querySelector('.admin-nav-btn.prev-btn');
     const adminNextBtn = adminSlider.querySelector('.admin-nav-btn.next-btn');
-    const adminModal = document.getElementById('admin-image-modal');
-    const adminModalImage = document.getElementById('admin-modal-image');
-    const adminModalImageContainer = adminModal ? adminModal.querySelector('.admin-modal-image-container') : null;
-    const adminModalTitle = document.getElementById('admin-modal-title');
-    const adminModalDescription = document.getElementById('admin-modal-description');
-    const adminModalClose = document.getElementById('admin-modal-close');
     
     let adminCurrentSlide = 0;
     const adminTotalSlides = adminSlides.length;
-    let adminIsModalZoomed = false;
+    
+    // Создаем контейнер для точек - КАК В GLAVN
+    const adminDotsContainer = document.createElement('div');
+    adminDotsContainer.className = 'admin-dots-indicators';
+    
+    // Создаем точки для каждого слайда
+    for (let i = 0; i < adminTotalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'admin-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => {
+            adminCurrentSlide = i;
+            updateAdminSlider();
+        });
+        adminDotsContainer.appendChild(dot);
+    }
+    
+    // Добавляем точки ПЕРЕД слайдером (вверху) - КАК В GLAVN
+    const adminSliderContainer = document.querySelector('.admin-slider-container');
+    adminSliderContainer.insertBefore(adminDotsContainer, adminSliderContainer.firstChild);
+    
+    const adminDots = document.querySelectorAll('.admin-dot');
     
     // Функция для обновления состояния слайдера
     function updateAdminSlider() {
@@ -30,6 +45,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 step.classList.add('active');
             } else {
                 step.classList.remove('active');
+            }
+        });
+        
+        // Обновляем активную точку - КАК В GLAVN
+        adminDots.forEach((dot, index) => {
+            if (index === adminCurrentSlide) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
             }
         });
         
@@ -61,74 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
             updateAdminSlider();
         });
     });
-    
-    // Открытие модального окна с изображением и приближением
-    function openAdminModal(slideIndex) {
-        if (slideIndex >= 0 && slideIndex < adminTotalSlides) {
-            const slide = adminSlides[slideIndex];
-            const image = slide.querySelector('img').src;
-            const title = slide.querySelector('.admin-slide-text h3').textContent;
-            const description = slide.querySelector('.admin-slide-text p').textContent;
-            
-            adminModalImage.src = image;
-            adminModalTitle.textContent = title;
-            adminModalDescription.textContent = description;
-            
-            // Сбрасываем состояние приближения
-            adminIsModalZoomed = false;
-            if (adminModalImageContainer) {
-                adminModalImageContainer.classList.remove('zoomed');
-            }
-            
-            adminModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-    }
-    
-    // Функция переключения приближения в модальном окне
-    function toggleAdminZoom() {
-        if (!adminModalImageContainer) return;
-        
-        adminIsModalZoomed = !adminIsModalZoomed;
-        adminModalImageContainer.classList.toggle('zoomed', adminIsModalZoomed);
-    }
-    
-    // Закрытие модального окна
-    function closeAdminModal() {
-        adminModal.classList.remove('active');
-        document.body.style.overflow = '';
-        
-        // Сбрасываем состояние приближения
-        adminIsModalZoomed = false;
-        if (adminModalImageContainer) {
-            adminModalImageContainer.classList.remove('zoomed');
-        }
-    }
-    
-    // Обработчики событий для модального окна
-    if (adminModalClose) adminModalClose.addEventListener('click', closeAdminModal);
-    
-    // Закрытие модального окна при клике на оверлей
-    if (adminModal) adminModal.addEventListener('click', function(e) {
-        if (e.target === adminModal) {
-            closeAdminModal();
-        }
-    });
-    
-    // Переключение приближения при клике на изображение в модальном окне
-    if (adminModalImage) {
-        adminModalImage.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleAdminZoom();
-        });
-    }
-    
-    // Обработчики событий для слайдов на мобильных устройствах
-    if (window.innerWidth <= 768) {
-        adminSlides.forEach((slide, index) => {
-            slide.addEventListener('click', () => openAdminModal(index));
-        });
-    }
     
     // Инициализация слайдера
     updateAdminSlider();
@@ -176,19 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 adminCurrentSlide++;
                 updateAdminSlider();
             }
-        } else if (e.key === 'Escape' && adminModal && adminModal.classList.contains('active')) {
-            closeAdminModal();
         }
-    });
-
-    // Обработка изменения размера окна
-    window.addEventListener('resize', function() {
-        // Обновляем обработчики для мобильной версии
-        adminSlides.forEach((slide, index) => {
-            slide.removeEventListener('click', () => openAdminModal(index));
-            if (window.innerWidth <= 768) {
-                slide.addEventListener('click', () => openAdminModal(index));
-            }
-        });
     });
 });
