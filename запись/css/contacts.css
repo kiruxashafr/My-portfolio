@@ -119,6 +119,41 @@
     border-radius: 15px;
 }
 
+/* Стили для номера телефона в модальном окне */
+.phone-number {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Unbounded', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+}
+
+.phone-number:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Стиль для иконки телефона в контакт-боксе */
+.contact-link-phone {
+    transition: all 0.3s ease;
+}
+
+.contact-link-phone:hover {
+    transform: scale(1.1);
+}
+
 /* Мобильная версия */
 @media (max-width: 768px) {
     .contacts-section {
@@ -162,6 +197,11 @@
         width: 100%;
         max-width: 400px;
     }
+    
+    .phone-number {
+        font-size: 16px;
+        padding: 8px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -181,5 +221,9 @@
     }
     .contacts-content{
         width: 90%;
+    }
+    
+    .phone-number {
+        font-size: 15px;
     }
 }

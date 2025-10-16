@@ -15,6 +15,50 @@ document.addEventListener('DOMContentLoaded', function() {
     const adminDotsContainer = document.createElement('div');
     adminDotsContainer.className = 'admin-dots-indicators';
     
+
+    // Добавьте эту функцию в начало файла (после объявления переменных)
+function setupHorizontalScrollPriority(element) {
+    let startX, startY, isScrolling;
+    
+    element.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].pageX;
+        startY = e.touches[0].pageY;
+        isScrolling = undefined;
+    });
+    
+    element.addEventListener('touchmove', function(e) {
+        if (!startX || !startY) return;
+        
+        const x = e.touches[0].pageX;
+        const y = e.touches[0].pageY;
+        
+        const diffX = Math.abs(x - startX);
+        const diffY = Math.abs(y - startY);
+        
+        // Если еще не определили направление скролла
+        if (isScrolling === undefined) {
+            // Если горизонтальное движение больше вертикального - блокируем вертикальный скролл
+            if (diffX > diffY) {
+                isScrolling = 'horizontal';
+                e.preventDefault();
+            } else {
+                isScrolling = 'vertical';
+            }
+        } 
+        // Если уже определили как горизонтальный - продолжаем блокировать вертикальный
+        else if (isScrolling === 'horizontal') {
+            e.preventDefault();
+        }
+    });
+    
+    element.addEventListener('touchend', function() {
+        startX = null;
+        startY = null;
+        isScrolling = undefined;
+    });
+}
+
+
     // Создаем точки для каждого слайда
     for (let i = 0; i < adminTotalSlides; i++) {
         const dot = document.createElement('div');
@@ -101,11 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateAdminSlider();
         });
     });
-    
-    // Инициализация слайдера
-    updateAdminSlider();
-    
-    // Обработка свайпов на мобильных устройствах
+        // Обработка свайпов на мобильных устройствах
     let adminStartX = 0;
     let adminEndX = 0;
     
@@ -150,4 +190,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    // Инициализация слайдера
+    updateAdminSlider();
+    
+
+
+    // В конец файла, после инициализации слайдера, добавьте:
+setupHorizontalScrollPriority(adminSlideTrack);
 });

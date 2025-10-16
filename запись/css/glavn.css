@@ -236,9 +236,14 @@
         gap: 0;
     }
 
+    .userpage-section{
+        padding: 80px 0;
+    }
+
     .userpage-title{
         margin-bottom: 20px;
         font-size: 40px;
+        padding: 0 10px;
     }
 
     .slide{
@@ -340,3 +345,4 @@
         height: 6px;
     }
 }
+

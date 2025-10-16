@@ -200,12 +200,13 @@
 /* Мобильная версия слайдера с точками */
 @media (max-width: 768px) {
     .admin-section {
-        padding: 60px 15px;
+        padding: 60px 0px;
     }
     
     .admin-title {
         font-size: 40px;
         margin-bottom: 20px;
+        padding: 0 10px;
     }
     
     .admin-slider-navigation {
@@ -299,6 +300,7 @@
 @media (max-width: 480px) {
     .admin-title {
         font-size: 30px;
+        padding: 0 15px;
     }
     
     .admin-swipe-hint {
