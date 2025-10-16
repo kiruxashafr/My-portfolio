@@ -218,6 +218,10 @@
         min-width: 60px;
         min-height: 60px;
     }
+
+    .swipe-hint{
+        display: none;
+    }
 }
 
 /* Мобильная версия слайдера с точками */
@@ -256,13 +260,13 @@
         display: none; /* Скрываем кнопки навигации на мобильных */
     }
     
-    /* Стили для точек-индикаторов - ПЕРЕМЕЩАЕМ СВЕРХУ */
+    /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ТОЧЕК И ПОДСКАЗКИ - ТЕПЕРЬ НА ОДНОЙ СТРОКЕ */
     .dots-indicators {
         display: flex;
         gap: 10px;
         justify-content: center;
-        margin-bottom: 20px; /* Отступ снизу от точек */
-        order: -1; /* Перемещаем точки перед контентом */
+        order: -1;
+        align-items: center; /* Выравниваем по центру по вертикали */
     }
     
     .dot {
@@ -278,10 +282,61 @@
         background: #3a0000;
         transform: scale(1.2);
     }
+    
+    /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ПОДСКАЗКИ СВАЙПА - ТЕПЕРЬ В ОДНОЙ СТРОКЕ С ТОЧКАМИ */
+    .swipe-hint {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        color: #0000007d;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 14px;
+        order: -1; /* Теперь тот же порядок, что и у точек */
+        margin-right: 15px; /* Отступ между подсказкой и точками */
+    }
+    
+    .swipe-hint-gif {
+        width: 30px; /* Немного уменьшаем для компактности */
+        height: 30px;
+        filter: brightness(0) invert(0.5);
+        rotate: 90deg;
+    }
+    
+    /* НОВЫЙ КОНТЕЙНЕР ДЛЯ ОБЪЕДИНЕНИЯ ПОДСКАЗКИ И ТОЧЕК */
+    .mobile-indicators-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+        order: -1;
+    }
 }
 
 @media (max-width: 480px) {
     .userpage-title{
         font-size: 30px;
+    }
+    
+    /* Дополнительные стили для очень маленьких экранов */
+    .swipe-hint {
+        font-size: 12px;
+        gap: 8px;
+    }
+    
+    .swipe-hint-gif {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .dots-indicators {
+        gap: 8px;
+    }
+    
+    .dot {
+        width: 6px;
+        height: 6px;
     }
 }

@@ -170,6 +170,10 @@
         max-width: 50%;
     }
 
+    .admin-swipe-hint{
+        display: none;
+    }
+
     .admin-slide-text {
         flex: 1;
         text-align: left;
@@ -193,7 +197,7 @@
     }
 }
 
-/* Адаптивность */
+/* Мобильная версия слайдера с точками */
 @media (max-width: 768px) {
     .admin-section {
         padding: 60px 15px;
@@ -204,7 +208,6 @@
         margin-bottom: 20px;
     }
     
-    /* Мобильная версия слайдера с точками - КАК В GLAVN */
     .admin-slider-navigation {
         flex-direction: column;
         gap: 15px;
@@ -230,20 +233,20 @@
     }
     
     .admin-step-indicators {
-        display: none; /* Скрываем цифры на мобильных */
+        display: none;
     }
     
     .admin-nav-btn {
-        display: none; /* Скрываем кнопки навигации на мобильных */
+        display: none;
     }
     
-    /* Стили для точек-индикаторов - ТОЧНО КАК В GLAVN */
+    /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ТОЧЕК И ПОДСКАЗКИ - ТЕПЕРЬ НА ОДНОЙ СТРОКЕ */
     .admin-dots-indicators {
         display: flex;
         gap: 10px;
         justify-content: center;
-        margin-bottom: 20px;
-        order: -1; /* Перемещаем точки перед контентом */
+        order: -1;
+        align-items: center;
     }
     
     .admin-dot {
@@ -259,10 +262,61 @@
         background: #3a0000;
         transform: scale(1.2);
     }
+    
+    /* ОБНОВЛЕННЫЕ СТИЛИ ДЛЯ ПОДСКАЗКИ СВАЙПА */
+    .admin-swipe-hint {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+
+        color: #0000007d;
+        font-family: 'Inter', Arial, sans-serif;
+        font-size: 14px;
+        order: -1;
+        margin-right: 15px;
+    }
+    
+    .admin-swipe-hint-gif {
+        width: 30px;
+        height: 30px;
+        filter: brightness(0) invert(0.5);
+        rotate: 90deg;
+    }
+    
+    /* НОВЫЙ КОНТЕЙНЕР ДЛЯ ОБЪЕДИНЕНИЯ ПОДСКАЗКИ И ТОЧЕК */
+    .admin-mobile-indicators-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+
+        width: 100%;
+        order: -1;
+    }
 }
 
 @media (max-width: 480px) {
     .admin-title {
         font-size: 30px;
+    }
+    
+    .admin-swipe-hint {
+        font-size: 12px;
+        gap: 8px;
+    }
+    
+    .admin-swipe-hint-gif {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .admin-dots-indicators {
+        gap: 8px;
+    }
+    
+    .admin-dot {
+        width: 6px;
+        height: 6px;
     }
 }

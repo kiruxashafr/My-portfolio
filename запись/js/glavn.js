@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Создаем контейнер для точек
     const dotsContainer = document.createElement('div');
     dotsContainer.className = 'dots-indicators';
-    
+
     // Создаем точки для каждого слайда
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
@@ -25,12 +25,28 @@ document.addEventListener('DOMContentLoaded', function() {
         dotsContainer.appendChild(dot);
     }
     
-    // Добавляем точки ПЕРЕД слайдером (вверху)
+    // Создаем элемент с подсказкой для свайпа
+    const swipeHint = document.createElement('div');
+    swipeHint.className = 'swipe-hint';
+    swipeHint.innerHTML = `
+        <p class="swiper">Листайте</p>
+        <img src="/zapisall/photo/administ/Scroll Down.gif" alt="Swipe right" class="swipe-hint-gif">
+    `;
+
+    // СОЗДАЕМ ОБЩИЙ КОНТЕЙНЕР ДЛЯ ПОДСКАЗКИ И ТОЧЕК
+    const mobileIndicatorsContainer = document.createElement('div');
+    mobileIndicatorsContainer.className = 'mobile-indicators-container';
+    
+    // Добавляем подсказку и точки в общий контейнер
+    mobileIndicatorsContainer.appendChild(swipeHint);
+    mobileIndicatorsContainer.appendChild(dotsContainer);
+    
+    // Добавляем общий контейнер ПЕРЕД слайдером
     const sliderContainer = document.querySelector('.slider-container');
-    sliderContainer.insertBefore(dotsContainer, sliderContainer.firstChild);
+    sliderContainer.insertBefore(mobileIndicatorsContainer, sliderContainer.firstChild);
     
     const dots = document.querySelectorAll('.dot');
-    
+
     // Функция для обновления состояния слайдера
     function updateSlider() {
         // Перемещаем слайдер

@@ -1,4 +1,3 @@
-// back-office.js - ПЕРЕИМЕНОВАНО ДЛЯ ИЗБЕЖАНИЯ КОНФЛИКТОВ
 document.addEventListener('DOMContentLoaded', function() {
     const adminSlider = document.querySelector('.admin-universal-slider');
     if (!adminSlider) return;
@@ -12,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let adminCurrentSlide = 0;
     const adminTotalSlides = adminSlides.length;
     
-    // Создаем контейнер для точек - КАК В GLAVN
+    // Создаем контейнер для точек
     const adminDotsContainer = document.createElement('div');
     adminDotsContainer.className = 'admin-dots-indicators';
     
@@ -28,13 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
         adminDotsContainer.appendChild(dot);
     }
     
-    // Добавляем точки ПЕРЕД слайдером (вверху) - КАК В GLAVN
+    // Создаем элемент с подсказкой для свайпа для бек-офиса
+    const adminSwipeHint = document.createElement('div');
+    adminSwipeHint.className = 'admin-swipe-hint';
+    adminSwipeHint.innerHTML = `
+        <p class="swiper-admin">Листайте</p>
+        <img src="/zapisall/photo/administ/Scroll Down.gif" alt="Swipe right" class="admin-swipe-hint-gif">
+    `;
+
+    // СОЗДАЕМ ОБЩИЙ КОНТЕЙНЕР ДЛЯ ПОДСКАЗКИ И ТОЧЕК
+    const adminMobileIndicatorsContainer = document.createElement('div');
+    adminMobileIndicatorsContainer.className = 'admin-mobile-indicators-container';
+    
+    // Добавляем подсказку и точки в общий контейнер
+    adminMobileIndicatorsContainer.appendChild(adminSwipeHint);
+    adminMobileIndicatorsContainer.appendChild(adminDotsContainer);
+    
+    // Добавляем общий контейнер ПЕРЕД слайдером
     const adminSliderContainer = document.querySelector('.admin-slider-container');
-    adminSliderContainer.insertBefore(adminDotsContainer, adminSliderContainer.firstChild);
+    adminSliderContainer.insertBefore(adminMobileIndicatorsContainer, adminSliderContainer.firstChild);
     
     const adminDots = document.querySelectorAll('.admin-dot');
-    
-    // Функция для обновления состояния слайдера
+
+
+
     function updateAdminSlider() {
         // Перемещаем слайдер
         adminSlideTrack.style.transform = `translateX(-${adminCurrentSlide * 100}%)`;
