@@ -13,49 +13,61 @@ document.addEventListener('DOMContentLoaded', function() {
     const dotsContainer = document.createElement('div');
     dotsContainer.className = 'dots-indicators';
 
-
-    // Добавьте эту функцию в начало файла (после объявления переменных)
-function setupHorizontalScrollPriority(element) {
-    let startX, startY, isScrolling;
-    
-    element.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].pageX;
-        startY = e.touches[0].pageY;
-        isScrolling = undefined;
-    });
-    
-    element.addEventListener('touchmove', function(e) {
-        if (!startX || !startY) return;
+    // Улучшенная функция для обработки свайпа
+    function setupSwipe(element) {
+        let startX = 0;
+        let isScrolling;
         
-        const x = e.touches[0].pageX;
-        const y = e.touches[0].pageY;
+        element.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].pageX;
+            isScrolling = undefined;
+            // Останавливаем распространение события
+            e.stopPropagation();
+        }, { passive: true });
         
-        const diffX = Math.abs(x - startX);
-        const diffY = Math.abs(y - startY);
-        
-        // Если еще не определили направление скролла
-        if (isScrolling === undefined) {
-            // Если горизонтальное движение больше вертикального - блокируем вертикальный скролл
-            if (diffX > diffY) {
-                isScrolling = 'horizontal';
-                e.preventDefault();
-            } else {
-                isScrolling = 'vertical';
+        element.addEventListener('touchmove', function(e) {
+            if (!startX) return;
+            
+            const x = e.touches[0].pageX;
+            const diffX = x - startX;
+            
+            // Если движение в основном горизонтальное - предотвращаем вертикальный скролл
+            if (isScrolling === undefined) {
+                isScrolling = Math.abs(diffX) > 5;
             }
-        } 
-        // Если уже определили как горизонтальный - продолжаем блокировать вертикальный
-        else if (isScrolling === 'horizontal') {
-            e.preventDefault();
-        }
-    });
-    
-    element.addEventListener('touchend', function() {
-        startX = null;
-        startY = null;
-        isScrolling = undefined;
-    });
-}
-
+            
+            if (isScrolling) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        element.addEventListener('touchend', function(e) {
+            if (!startX) return;
+            
+            const endX = e.changedTouches[0].pageX;
+            const diffX = endX - startX;
+            const swipeThreshold = 50;
+            
+            // Определяем направление свайпа
+            if (Math.abs(diffX) > swipeThreshold) {
+                if (diffX > 0 && currentSlide > 0) {
+                    // Свайп вправо
+                    currentSlide--;
+                    updateSlider();
+                } else if (diffX < 0 && currentSlide < totalSlides - 1) {
+                    // Свайп влево
+                    currentSlide++;
+                    updateSlider();
+                }
+                
+                // Предотвращаем клики после свайпа
+                e.preventDefault();
+            }
+            
+            startX = 0;
+            isScrolling = undefined;
+        }, { passive: true });
+    }
 
     // Создаем точки для каждого слайда
     for (let i = 0; i < totalSlides; i++) {
@@ -143,39 +155,12 @@ function setupHorizontalScrollPriority(element) {
         });
     });
     
-    // Добавляем обработчики для свайпа на мобильных устройствах
-    let startX = 0;
-    let endX = 0;
+    // Инициализация улучшенного свайпа
+    setupSwipe(sliderTrack);
     
-    sliderTrack.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].clientX;
-    });
-    
-    sliderTrack.addEventListener('touchend', function(e) {
-        endX = e.changedTouches[0].clientX;
-        handleSwipe();
-    });
-    
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        
-        if (startX - endX > swipeThreshold) {
-            // Свайп влево - следующий слайд
-            if (currentSlide < totalSlides - 1) {
-                currentSlide++;
-                updateSlider();
-            }
-        } else if (endX - startX > swipeThreshold) {
-            // Свайп вправо - предыдущий слайд
-            if (currentSlide > 0) {
-                currentSlide--;
-                updateSlider();
-            }
-        }
-    }
+    // Также добавляем обработчик для всего слайдера для дополнительной надежности
+    setupSwipe(document.querySelector('.slider-content'));
     
     // Инициализация слайдера
     updateSlider();
-    // В конец файла, после инициализации слайдера, добавьте:
-setupHorizontalScrollPriority(sliderTrack);
 });

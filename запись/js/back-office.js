@@ -14,50 +14,61 @@ document.addEventListener('DOMContentLoaded', function() {
     // Создаем контейнер для точек
     const adminDotsContainer = document.createElement('div');
     adminDotsContainer.className = 'admin-dots-indicators';
-    
 
-    // Добавьте эту функцию в начало файла (после объявления переменных)
-function setupHorizontalScrollPriority(element) {
-    let startX, startY, isScrolling;
-    
-    element.addEventListener('touchstart', function(e) {
-        startX = e.touches[0].pageX;
-        startY = e.touches[0].pageY;
-        isScrolling = undefined;
-    });
-    
-    element.addEventListener('touchmove', function(e) {
-        if (!startX || !startY) return;
+    // Улучшенная функция для обработки свайпа
+    function setupAdminSwipe(element) {
+        let startX = 0;
+        let isScrolling;
         
-        const x = e.touches[0].pageX;
-        const y = e.touches[0].pageY;
+        element.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].pageX;
+            isScrolling = undefined;
+            e.stopPropagation();
+        }, { passive: true });
         
-        const diffX = Math.abs(x - startX);
-        const diffY = Math.abs(y - startY);
-        
-        // Если еще не определили направление скролла
-        if (isScrolling === undefined) {
-            // Если горизонтальное движение больше вертикального - блокируем вертикальный скролл
-            if (diffX > diffY) {
-                isScrolling = 'horizontal';
-                e.preventDefault();
-            } else {
-                isScrolling = 'vertical';
+        element.addEventListener('touchmove', function(e) {
+            if (!startX) return;
+            
+            const x = e.touches[0].pageX;
+            const diffX = x - startX;
+            
+            // Если движение в основном горизонтальное - предотвращаем вертикальный скролл
+            if (isScrolling === undefined) {
+                isScrolling = Math.abs(diffX) > 5;
             }
-        } 
-        // Если уже определили как горизонтальный - продолжаем блокировать вертикальный
-        else if (isScrolling === 'horizontal') {
-            e.preventDefault();
-        }
-    });
-    
-    element.addEventListener('touchend', function() {
-        startX = null;
-        startY = null;
-        isScrolling = undefined;
-    });
-}
-
+            
+            if (isScrolling) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        element.addEventListener('touchend', function(e) {
+            if (!startX) return;
+            
+            const endX = e.changedTouches[0].pageX;
+            const diffX = endX - startX;
+            const swipeThreshold = 50;
+            
+            // Определяем направление свайпа
+            if (Math.abs(diffX) > swipeThreshold) {
+                if (diffX > 0 && adminCurrentSlide > 0) {
+                    // Свайп вправо
+                    adminCurrentSlide--;
+                    updateAdminSlider();
+                } else if (diffX < 0 && adminCurrentSlide < adminTotalSlides - 1) {
+                    // Свайп влево
+                    adminCurrentSlide++;
+                    updateAdminSlider();
+                }
+                
+                // Предотвращаем клики после свайпа
+                e.preventDefault();
+            }
+            
+            startX = 0;
+            isScrolling = undefined;
+        }, { passive: true });
+    }
 
     // Создаем точки для каждого слайда
     for (let i = 0; i < adminTotalSlides; i++) {
@@ -93,8 +104,6 @@ function setupHorizontalScrollPriority(element) {
     
     const adminDots = document.querySelectorAll('.admin-dot');
 
-
-
     function updateAdminSlider() {
         // Перемещаем слайдер
         adminSlideTrack.style.transform = `translateX(-${adminCurrentSlide * 100}%)`;
@@ -108,7 +117,7 @@ function setupHorizontalScrollPriority(element) {
             }
         });
         
-        // Обновляем активную точку - КАК В GLAVN
+        // Обновляем активную точку
         adminDots.forEach((dot, index) => {
             if (index === adminCurrentSlide) {
                 dot.classList.add('active');
@@ -145,36 +154,6 @@ function setupHorizontalScrollPriority(element) {
             updateAdminSlider();
         });
     });
-        // Обработка свайпов на мобильных устройствах
-    let adminStartX = 0;
-    let adminEndX = 0;
-    
-    adminSlideTrack.addEventListener('touchstart', function(e) {
-        adminStartX = e.touches[0].clientX;
-    });
-    
-    adminSlideTrack.addEventListener('touchend', function(e) {
-        adminEndX = e.changedTouches[0].clientX;
-        handleAdminSwipe();
-    });
-    
-    function handleAdminSwipe() {
-        const swipeThreshold = 50;
-        
-        if (adminStartX - adminEndX > swipeThreshold) {
-            // Свайп влево - следующий слайд
-            if (adminCurrentSlide < adminTotalSlides - 1) {
-                adminCurrentSlide++;
-                updateAdminSlider();
-            }
-        } else if (adminEndX - adminStartX > swipeThreshold) {
-            // Свайп вправо - предыдущий слайд
-            if (adminCurrentSlide > 0) {
-                adminCurrentSlide--;
-                updateAdminSlider();
-            }
-        }
-    }
     
     // Обработка клавиш клавиатуры
     document.addEventListener('keydown', (e) => {
@@ -190,11 +169,13 @@ function setupHorizontalScrollPriority(element) {
             }
         }
     });
+    
+    // Инициализация улучшенного свайпа
+    setupAdminSwipe(adminSlideTrack);
+    
+    // Также добавляем обработчик для всего слайдера для дополнительной надежности
+    setupAdminSwipe(document.querySelector('.admin-slider-content'));
+    
     // Инициализация слайдера
     updateAdminSlider();
-    
-
-
-    // В конец файла, после инициализации слайдера, добавьте:
-setupHorizontalScrollPriority(adminSlideTrack);
 });

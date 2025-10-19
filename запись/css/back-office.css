@@ -322,3 +322,33 @@
         height: 6px;
     }
 }
+
+
+/* Добавьте в конец back-office.css */
+.admin-slider-content {
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+.admin-slide-track {
+    -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.admin-slide {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Улучшение для iOS */
+@supports (-webkit-touch-callout: none) {
+    .admin-slider-content {
+        overflow: hidden;
+    }
+    
+    .admin-slide-track {
+        will-change: transform;
+    }
+}

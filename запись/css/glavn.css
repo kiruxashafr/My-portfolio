@@ -346,3 +346,31 @@
     }
 }
 
+/* Добавьте в конец glavn.css */
+.slider-content {
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden;
+}
+
+.slide-track {
+    -webkit-overflow-scrolling: touch;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.slide {
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+}
+
+/* Улучшение для iOS */
+@supports (-webkit-touch-callout: none) {
+    .slider-content {
+        overflow: hidden;
+    }
+    
+    .slide-track {
+        will-change: transform;
+    }
+}

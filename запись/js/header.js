@@ -6,16 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuLinks = document.querySelectorAll('.menu-link');
     const contactOrderBtn = document.querySelector('.contact-order-btn');
     const contactModal = document.getElementById('contact-modal');
-    const closeContactModal = document.querySelector('.close-contact-modal');
+    const closeContactModalBtn = document.querySelector('.close-contact-modal');
 
     // Переменные для управления скроллом
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
     const headerHeight = header.offsetHeight;
+    let ticking = false;
 
-    // Функция для скрытия/показа header при скролле
-    window.addEventListener('scroll', () => {
+    // Улучшенная функция для скрытия/показа header при скролле
+    function updateHeaderVisibility() {
         let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Добавляем небольшой порог для предотвращения мерцания
+        const scrollThreshold = 5;
+        
+        if (Math.abs(currentScroll - lastScrollTop) <= scrollThreshold) {
+            ticking = false;
+            return;
+        }
         
         if (currentScroll > lastScrollTop && currentScroll > headerHeight) {
             // Скролл вниз - скрываем header
@@ -24,7 +33,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Скролл вверх - показываем header
             header.classList.remove('header-hidden');
         }
+        
         lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+        ticking = false;
+    }
+
+    // Оптимизированный обработчик скролла с requestAnimationFrame
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(updateHeaderVisibility);
+            ticking = true;
+        }
     });
 
     // Функция закрытия меню
@@ -40,6 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     hamburgerInput.addEventListener('change', () => {
         if (hamburgerInput.checked) {
             modal.style.display = 'flex';
+            // При открытии меню убедимся, что хедер виден
+            header.classList.remove('header-hidden');
             menuItems.forEach((item, index) => {
                 setTimeout(() => {
                     item.classList.add('draw');
@@ -71,11 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Для контактов открываем модальное окно
                 if (contactModal) {
                     contactModal.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
                 }
             } else {
                 // Для других секций - плавная прокрутка
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
+                    // Убедимся, что хедер виден перед скроллом
+                    header.classList.remove('header-hidden');
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
@@ -85,58 +109,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-// Обработка кнопки "Заказать сайт" в меню
-if (contactOrderBtn) {
-    contactOrderBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeMenu();
-        openContactModal();
-    });
-}
-
-// Обработка кнопки "Контакты" в хедере
-const headerContactBtn = document.querySelector('.contact-btn');
-if (headerContactBtn) {
-    headerContactBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        openContactModal();
-    });
-}
-
-// Функция для открытия модального окна контактов
-function openContactModal() {
-    if (contactModal) {
-        contactModal.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Блокируем скролл
+    // Обработка кнопки "Заказать сайт" в меню
+    if (contactOrderBtn) {
+        contactOrderBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeMenu();
+            if (contactModal) {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
     }
-}
 
-// Функция для закрытия модального окна контактов
-function closeContactModal() {
-    if (contactModal) {
-        contactModal.style.display = 'none';
-        document.body.style.overflow = ''; // Разблокируем скролл
+    // Обработка кнопки "Контакты" в хедере
+    const headerContactBtn = document.querySelector('.contact-btn');
+    if (headerContactBtn) {
+        headerContactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Убедимся, что хедер виден при открытии контактов
+            header.classList.remove('header-hidden');
+            if (contactModal) {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
     }
-}
 
-// Закрытие модального окна контактов
-if (closeContactModal) {
-    closeContactModal.addEventListener('click', closeContactModal);
-}
+    // Закрытие модального окна контактов
+    if (closeContactModalBtn) {
+        closeContactModalBtn.addEventListener('click', () => {
+            if (contactModal) {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
 
-// Закрытие модального окна контактов при клике вне его
-if (contactModal) {
-    contactModal.addEventListener('click', (e) => {
-        if (e.target === contactModal) {
-            closeContactModal();
+    // Закрытие модального окна контактов при клике вне его
+    if (contactModal) {
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+    // Закрытие по ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (contactModal && contactModal.style.display === 'flex') {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            if (modal && modal.style.display === 'flex') {
+                closeMenu();
+            }
         }
     });
-}
-
-// Закрытие по ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && contactModal && contactModal.style.display === 'flex') {
-        closeContactModal();
-    }
-});
 });

@@ -132,6 +132,11 @@
     }
 }
 
+@media (max-width: 890px) {
+    .service-content h3{
+        font-size: 1rem;
+    }
+}
 /* Планшет версия */
 @media (max-width: 768px) {
     .services-grid {

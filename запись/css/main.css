@@ -115,6 +115,7 @@ body {
     font-family: inter;
     font-weight: 700;
     font-size: 3rem;
+    height: 58px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -279,6 +280,9 @@ body {
         min-height: auto;
         gap: 30px;
         z-index: 1; /* Сохранение z-index */
+    }
+    .console-container{
+        height: 40px;
     }
     
     .content {
