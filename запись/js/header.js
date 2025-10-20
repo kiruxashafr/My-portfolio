@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactOrderBtn = document.querySelector('.contact-order-btn');
     const contactModal = document.getElementById('contact-modal');
     const closeContactModalBtn = document.querySelector('.close-contact-modal');
-
     // Переменные для управления скроллом
     let lastScrollTop = 0;
     const header = document.querySelector('.header');
@@ -120,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
     // Обработка кнопки "Контакты" в хедере
     const headerContactBtn = document.querySelector('.contact-btn');
     if (headerContactBtn) {
@@ -131,6 +129,33 @@ document.addEventListener('DOMContentLoaded', () => {
             if (contactModal) {
                 contactModal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
+            }
+        });
+    }
+
+    // ДОБАВЬТЕ ЭТОТ КОД - Обработка всех кнопок "Заказать сайт"
+    const orderButtons = document.querySelectorAll('.order-btn, .zakaz-btn, .desktop-btn, .mobile-btn');
+    orderButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Убедимся, что хедер виден при открытии контактов
+            header.classList.remove('header-hidden');
+            
+            // Открываем модальное окно контактов
+            if (contactModal) {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+
+    // Закрытие модального окна контактов
+    if (closeContactModalBtn) {
+        closeContactModalBtn.addEventListener('click', () => {
+            if (contactModal) {
+                contactModal.style.display = 'none';
+                document.body.style.overflow = '';
             }
         });
     }
@@ -154,6 +179,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+    // Обработка всех кнопок "Заказать сайт"
+document.addEventListener('DOMContentLoaded', function() {
+    // Находим все кнопки "Заказать сайт" на странице
+    const orderButtons = document.querySelectorAll('.order-btn, .zakaz-btn, .desktop-btn, .mobile-btn');
+    const contactModal = document.getElementById('contact-modal');
+    const header = document.querySelector('.header');
+
+    orderButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Убедимся, что хедер виден при открытии контактов
+            if (header) {
+                header.classList.remove('header-hidden');
+            }
+            
+            // Открываем модальное окно контактов
+            if (contactModal) {
+                contactModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+});
 
     // Закрытие по ESC
     document.addEventListener('keydown', function(e) {
