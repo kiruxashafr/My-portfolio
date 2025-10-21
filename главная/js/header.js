@@ -29,6 +29,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+    // Добавьте этот код в файл scroll.js или создайте новый
+function adjustAboutSectionHeight() {
+    if (window.innerWidth >= 769) {
+        const aboutText = document.querySelector('.about-text');
+        const aboutImage = document.querySelector('.about-image[data-image="full"]');
+        
+        if (aboutText && aboutImage) {
+            const textHeight = aboutText.offsetHeight;
+            aboutImage.style.height = textHeight + 'px';
+        }
+    }
+}
+
+// Вызываем при загрузке и изменении размера окна
+window.addEventListener('load', adjustAboutSectionHeight);
+window.addEventListener('resize', adjustAboutSectionHeight);
+
+// Также можно вызвать после анимации появления
+setTimeout(adjustAboutSectionHeight, 1000);
 
     // Close modal and reset hamburger and lines when close button is clicked
     closeBtn.addEventListener('click', () => {
