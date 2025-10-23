@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     // Add loading class to body to hide content initially
     document.body.classList.add('loading');
@@ -7,11 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const menuItems = document.querySelectorAll('.modal-content ul li');
     const contactBtn = document.querySelector('.contact-btn');
-    const aboutSection = document.querySelector('.about-section');
-    const worksSection = document.querySelector('.works-section');
-
-    // Select animatable elements for about-section and works-section
-    const animatableElements = document.querySelectorAll('.about-section .about-image, .about-section .cardd, .about-section .about-text p, .works-section .phone-mockup');
 
     // Toggle modal and animate lines when hamburger is clicked
     hamburgerInput.addEventListener('change', () => {
@@ -29,25 +25,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
+
     // Добавьте этот код в файл scroll.js или создайте новый
-function adjustAboutSectionHeight() {
-    if (window.innerWidth >= 769) {
-        const aboutText = document.querySelector('.about-text');
-        const aboutImage = document.querySelector('.about-image[data-image="full"]');
-        
-        if (aboutText && aboutImage) {
-            const textHeight = aboutText.offsetHeight;
-            aboutImage.style.height = textHeight + 'px';
+    function adjustAboutSectionHeight() {
+        if (window.innerWidth >= 769) {
+            const aboutText = document.querySelector('.about-text');
+            const aboutImage = document.querySelector('.about-image[data-image="full"]');
+            
+            if (aboutText && aboutImage) {
+                const textHeight = aboutText.offsetHeight;
+                aboutImage.style.height = textHeight + 'px';
+            }
         }
     }
-}
 
-// Вызываем при загрузке и изменении размера окна
-window.addEventListener('load', adjustAboutSectionHeight);
-window.addEventListener('resize', adjustAboutSectionHeight);
+    // Вызываем при загрузке и изменении размера окна
+    window.addEventListener('load', adjustAboutSectionHeight);
+    window.addEventListener('resize', adjustAboutSectionHeight);
 
-// Также можно вызвать после анимации появления
-setTimeout(adjustAboutSectionHeight, 1000);
+    // Также можно вызвать после анимации появления
+    setTimeout(adjustAboutSectionHeight, 1000);
 
     // Close modal and reset hamburger and lines when close button is clicked
     closeBtn.addEventListener('click', () => {
@@ -68,25 +65,6 @@ setTimeout(adjustAboutSectionHeight, 1000);
             });
         }
     });
-
-
-    // IntersectionObserver to trigger animations for sections
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animatableElements.forEach((element, index) => {
-                    setTimeout(() => {
-                        element.classList.add('visible');
-                    }, index * 200);
-                });
-            }
-        });
-    }, {
-        threshold: 0.05 // Trigger when 5% of the section is visible
-    });
-
-    observer.observe(aboutSection);
-    if (worksSection) observer.observe(worksSection);
 });
 
 // Hide loader and show content when page is fully loaded

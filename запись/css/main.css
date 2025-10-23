@@ -59,6 +59,9 @@
     box-sizing: border-box;
     outline: none;
 }
+a {
+    text-decoration: none;
+}
 
 body {
     font-family: Arial, sans-serif;

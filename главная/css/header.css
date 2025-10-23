@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'Unbounded';
     src: url('../fonts/unbounded/TTF/Unbounded-Light.ttf') format('truetype');
@@ -60,7 +61,6 @@ main {
 
 .container,
 .about-section {
-    min-height: 100vh; /* Allow sections to grow with content */
     scroll-snap-align: start;
 }
 
@@ -548,7 +548,6 @@ ul li.draw::after {
     padding-top: 50px;
     box-sizing: border-box;
     width: 100%;
-    min-height: 100vh; /* Allow section to grow with content */
 }
 
 .about-heading {
@@ -569,19 +568,12 @@ ul li.draw::after {
     gap: 2em;
 }
 
+/* Убрана анимация появления - элементы сразу видимы */
 .about-image,
 .cardd,
 .about-text p {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.about-image.visible,
-.cardd.visible,
-.about-text p.visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1; /* Изменено: сразу видимый */
+    transform: translateY(0); /* Изменено: без смещения */
 }
 
 .about-image {
@@ -647,14 +639,8 @@ ul li.draw::after {
         margin: 0 auto;
         position: relative;
         z-index: 1;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .about-image[data-image="min"].visible {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; /* Изменено: сразу видимый */
+        transform: translateY(0); /* Изменено: без смещения */
     }
 
     .about-image[data-image="min"] img {
@@ -678,17 +664,11 @@ ul li.draw::after {
         z-index: 2;
     }
 
+    /* Убрана анимация для мобильной версии */
     .cardd,
     .about-text p {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .cardd.visible,
-    .about-text p.visible {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; /* Изменено: сразу видимый */
+        transform: translateY(0); /* Изменено: без смещения */
     }
 }
 
@@ -912,14 +892,8 @@ ul li.draw::after {
         margin: 0 auto;
         position: relative;
         z-index: 1;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    }
-
-    .about-image[data-image="min"].visible {
-        opacity: 1;
-        transform: translateY(0);
+        opacity: 1; /* Изменено: сразу видимый */
+        transform: translateY(0); /* Изменено: без смещения */
     }
 
     .about-image[data-image="min"] img {

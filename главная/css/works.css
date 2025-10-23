@@ -1,3 +1,4 @@
+
 /* From Uiverse.io by arthur_6104 */
 .works-section {
   display: flex;
@@ -138,15 +139,9 @@
   display: flex;
   justify-content: center;
   margin: 20px auto 0; /* Center and space below heading */
-  opacity: 0; /* Initial state for animation */
-  transform: translateY(30px); /* Initial state for animation */
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  z-index: 1; /* Ensure it’s not overlapped */
-}
-
-.phone-mockup.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; /* Изменено: сразу видимый */
+  transform: translateY(0); /* Изменено: без смещения */
+  z-index: 1; /* Ensure it's not overlapped */
 }
 
 .phone-mockup img {

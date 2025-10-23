@@ -7,8 +7,7 @@ const port = 3010;
 // Middleware for logging and decoding URLs
 app.use((req, res, next) => {
     const decodedUrl = decodeURI(req.url);
-    console.log(`Raw URL: ${req.url}`);
-    console.log(`Decoded URL: ${decodedUrl}`);
+
     req.url = decodedUrl;
     next();
 });
@@ -17,7 +16,6 @@ app.use((req, res, next) => {
 app.use((req, res, next) => {
     if (req.url.startsWith('/css/../fonts/')) {
         req.url = req.url.replace('/css/../fonts/', '/fonts/');
-        console.log(`Redirected URL: ${req.url}`);
     }
     next();
 });
@@ -25,74 +23,60 @@ app.use((req, res, next) => {
 // Static files from 'главная/css', 'главная/js', 'главная/photo', 'главная/fonts'
 app.use('/css', express.static(path.join(__dirname, 'главная', 'css'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/js', express.static(path.join(__dirname, 'главная', 'js'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/photo', express.static(path.join(__dirname, 'главная', 'photo'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/fonts', express.static(path.join(__dirname, 'главная', 'fonts'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 
 // Static files from 'доставка еды/css', 'доставка еды/js', 'доставка еды/photo', 'доставка еды/fonts'
 app.use('/delivery/css', express.static(path.join(__dirname, 'доставка еды', 'css'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/delivery/js', express.static(path.join(__dirname, 'доставка еды', 'js'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/delivery/photo', express.static(path.join(__dirname, 'доставка еды', 'photo'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/delivery/fonts', express.static(path.join(__dirname, 'доставка еды', 'fonts'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 
 
 app.use('/zapisall/css', express.static(path.join(__dirname, 'запись', 'css'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/zapisall/js', express.static(path.join(__dirname, 'запись', 'js'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/zapisall/photo', express.static(path.join(__dirname, 'запись', 'photo'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 app.use('/zapisall/fonts', express.static(path.join(__dirname, 'запись', 'fonts'), {
     setHeaders: (res, filePath) => {
-        console.log(`Serving static file: ${filePath}`);
     }
 }));
 
 // Root route for главная.html
 app.get('/', (req, res) => {
     const filePath = path.join(__dirname, 'главная', 'главная.html');
-    console.log(`Attempting to serve root: ${filePath}`);
-    console.log(`File exists: ${fs.existsSync(filePath)}`);
     if (fs.existsSync(filePath)) {
         res.sendFile(filePath);
     } else {
@@ -103,8 +87,6 @@ app.get('/', (req, res) => {
 // Route for /delivery to serve сайтдоставки.html
 app.get('/delivery', (req, res) => {
     const filePath = path.join(__dirname, 'доставка еды', 'сайтдоставки.html');
-    console.log(`Attempting to serve delivery: ${filePath}`);
-    console.log(`File exists: ${fs.existsSync(filePath)}`);
     if (fs.existsSync(filePath)) {
         res.sendFile(filePath);
     } else {
@@ -115,8 +97,6 @@ app.get('/delivery', (req, res) => {
 // Route for /delivery to serve сайтдоставки.html
 app.get('/zapisall', (req, res) => {
     const filePath = path.join(__dirname, 'запись', 'zapisall.html');
-    console.log(`Attempting to serve delivery: ${filePath}`);
-    console.log(`File exists: ${fs.existsSync(filePath)}`);
     if (fs.existsSync(filePath)) {
         res.sendFile(filePath);
     } else {
