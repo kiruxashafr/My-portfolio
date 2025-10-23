@@ -248,30 +248,30 @@ body {
     transform: scale(1.05);
 }
 
-/* Финальные позиции при разлете (уменьшены значения translate) */
+/* Финальные позиции при разлете (улетают на ширину экрана 100vw) */
 .photo-item.scroll-animate[data-index="0"] { 
-    transform: translateX(-50vw) translateY(-40vh) rotate(-45deg); 
+    transform: translateX(-100vw) translateY(-40vh) rotate(-45deg); 
 }
 .photo-item.scroll-animate[data-index="1"] { 
-    transform: translateX(-40vw) translateY(-30vh) rotate(-35deg); 
+    transform: translateX(-80vw) translateY(-30vh) rotate(-35deg); 
 }
 .photo-item.scroll-animate[data-index="2"] { 
-    transform: translateX(-30vw) translateY(-20vh) rotate(-25deg); 
+    transform: translateX(-60vw) translateY(-20vh) rotate(-25deg); 
 }
 .photo-item.scroll-animate[data-index="3"] { 
-    transform: translateX(-20vw) translateY(-10vh) rotate(-15deg); 
+    transform: translateX(-40vw) translateY(-10vh) rotate(-15deg); 
 }
 .photo-item.scroll-animate[data-index="4"] { 
-    transform: translateX(50vw) translateY(-40vh) rotate(45deg); 
+    transform: translateX(100vw) translateY(-40vh) rotate(45deg); 
 }
 .photo-item.scroll-animate[data-index="5"] { 
-    transform: translateX(40vw) translateY(-30vh) rotate(35deg); 
+    transform: translateX(80vw) translateY(-30vh) rotate(35deg); 
 }
 .photo-item.scroll-animate[data-index="6"] { 
-    transform: translateX(30vw) translateY(-20vh) rotate(25deg); 
+    transform: translateX(60vw) translateY(-20vh) rotate(25deg); 
 }
 .photo-item.scroll-animate[data-index="7"] { 
-    transform: translateX(20vw) translateY(-10vh) rotate(15deg); 
+    transform: translateX(40vw) translateY(-10vh) rotate(15deg); 
 }
 
 /* Мобильная версия */
@@ -400,7 +400,7 @@ body {
         transform: translateX(-20vw) translateY(-30vh) rotate(-35deg);
     }
     .photo-item.scroll-animate[data-index="2"] { 
-        transform: translateX(20vw) translateY(-20vh) rotate(-25deg);
+        transform: translateX(20vw) translateY(-25vh) rotate(-25deg);
     }
     .photo-item.scroll-animate[data-index="3"] { 
         display: none;
@@ -412,10 +412,10 @@ body {
         transform: translateX(10vw) translateY(-30vh) rotate(35deg);
     }
     .photo-item.scroll-animate[data-index="6"] { 
-        transform: translateX(30vw) translateY(-20vh) rotate(25deg);
+        transform: translateX(30vw) translateY(-25vh) rotate(25deg);
     }
     .photo-item.scroll-animate[data-index="7"] { 
-        transform: translateX(20vw) translateY(-10vh) rotate(15deg);
+        transform: translateX(40vw) translateY(-30vh) rotate(15deg);
     }
 }
 

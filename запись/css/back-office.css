@@ -77,8 +77,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #3a0000;
-    color: white;
+    background: none;
+    color: rgb(0, 0, 0);
     border: none;
     display: flex;
     align-items: center;
@@ -86,20 +86,21 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1.2rem;
+    /* Добавляем фиксированные минимальные размеры */
     min-width: 50px;
     min-height: 50px;
+    /* Запрещаем сжатие */
     flex-shrink: 0;
 }
 
 .admin-nav-btn:hover {
-    background: #5a0000;
     transform: scale(1.05);
 }
 
 .admin-nav-btn:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-    transform: none;
+color: white;
+cursor: not-allowed;
+transform: none;
 }
 
 .admin-slider-content {
