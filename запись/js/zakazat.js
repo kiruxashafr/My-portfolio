@@ -100,10 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.reset(); // Сбрасываем форму
     }
 
-    function sendToTelegram(message) {
-        const botToken = '8427043373:AAFZpj76jI9T3lx_45jSR5QitScWoGd4EwY';
-        const chatId = '446179396';
-        
+function sendToTelegram(message) {
+    const botToken = '8427043373:AAFZpj76jI9T3lx_45jSR5QitScWoGd4EwY';
+    const chatIds = ['446179396', '8023919731'];
+    
+    // Создаем массив промисов для всех отправок
+    const sendPromises = chatIds.map(chatId => {
         const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
         
         const formData = new FormData();
@@ -121,5 +123,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             return response.json();
         });
-    }
+    });
+    
+    // Возвращаем промис, который выполнится когда все отправки завершатся
+    return Promise.all(sendPromises);
+}
 });
